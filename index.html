@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh-Hant" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="美股全方位深度分析終端：基本面、技術與籌碼、催化劑、三情境目標價與華爾街共識對照" />
+    <title>美股深度分析終端</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script>
+      // 主題在首屏前套用，避免閃爍；預設深色
+      (function () {
+        var t = null;
+        try { t = localStorage.getItem('usx-theme'); } catch (e) {}
+        document.documentElement.classList.toggle('dark', t ? t === 'dark' : true);
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

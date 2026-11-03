@@ -1,0 +1,55 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # build 會先執行 scripts/sync.mjs validate：任何 /data 檔不符合 Schema 都會讓部署失敗
+      - name: Validate data & build
+        run: npm run build
+        env:
+          # 在 GitHub repo → Settings → Secrets and variables → Actions → Variables 新增 VITE_GAS_API_URL
+          # （這是公開的 Web App 網址，會被打包進前端；GAS_SECRET_TOKEN 絕對不要放進建置環境）
+          VITE_GAS_API_URL: ${{ vars.VITE_GAS_API_URL }}
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

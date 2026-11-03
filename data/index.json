@@ -1,0 +1,26 @@
+{
+  "$schema": "../schema/stock-analysis.schema.json",
+  "schemaVersion": "1.0.0",
+  "generatedAt": "2026-11-03T06:48:00.831Z",
+  "count": 1,
+  "stocks": [
+    {
+      "ticker": "MRVL",
+      "exchange": "NASDAQ",
+      "name": "Marvell Technology, Inc.",
+      "nameZh": "邁威爾科技",
+      "sector": "Information Technology",
+      "industry": "Semiconductors",
+      "rating": "Buy",
+      "currentPrice": 171.41,
+      "priceDate": "2026-11-02",
+      "bearTarget": 113,
+      "baseTarget": 216,
+      "bullTarget": 308,
+      "baseUpsidePct": 26,
+      "streetMedianTarget": 335,
+      "updatedAt": "2026-11-03T10:00:00+08:00",
+      "file": "stocks/MRVL.json"
+    }
+  ]
+}

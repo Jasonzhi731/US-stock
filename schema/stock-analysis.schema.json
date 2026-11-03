@@ -1,0 +1,2332 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://us-stock-analysis.local/schema/stock-analysis.schema.json",
+  "title": "US Stock Deep-Dive Analysis",
+  "description": "美股深度分析統一結構。個股檔 /data/stocks/{TICKER}.json 與索引檔 /data/index.json 都以此 Schema 驗證：含 `stocks` 陣列者視為索引檔，其餘視為個股檔。百分比欄位（名稱以 Pct 結尾）一律以「百分點」表示，例如 26.5 代表 26.5%。金額欄位以 USDm 結尾者單位為百萬美元，其餘價格單位為美元。",
+  "if": {
+    "type": "object",
+    "properties": {
+      "stocks": {
+        "type": "array"
+      }
+    },
+    "required": [
+      "stocks"
+    ]
+  },
+  "then": {
+    "$ref": "#/$defs/indexFile"
+  },
+  "else": {
+    "$ref": "#/$defs/stockAnalysis"
+  },
+  "$defs": {
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "isoDate": {
+      "type": "string",
+      "format": "date",
+      "description": "YYYY-MM-DD"
+    },
+    "isoDateOrNull": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date"
+    },
+    "isoDateTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601，需含時區，例如 2026-11-03T09:30:00+08:00"
+    },
+    "price": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "priceOrNull": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "exclusiveMinimum": 0
+    },
+    "pct": {
+      "type": "number",
+      "description": "百分點，26.5 = 26.5%"
+    },
+    "pctOrNull": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "description": "百分點，可為 null（資料不可得）"
+    },
+    "numberOrNull": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "ticker": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9.\\-]{0,9}$"
+    },
+    "exchange": {
+      "type": "string",
+      "enum": [
+        "NASDAQ",
+        "NYSE"
+      ]
+    },
+    "rating": {
+      "type": "string",
+      "enum": [
+        "Strong Buy",
+        "Buy",
+        "Hold",
+        "Trim"
+      ]
+    },
+    "impact": {
+      "type": "string",
+      "enum": [
+        "Bullish",
+        "Bearish",
+        "Neutral"
+      ]
+    },
+    "direction": {
+      "type": "string",
+      "enum": [
+        "Bullish",
+        "Bearish",
+        "Neutral"
+      ]
+    },
+    "level3": {
+      "type": "string",
+      "enum": [
+        "High",
+        "Medium",
+        "Low"
+      ]
+    },
+    "stringList": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/nonEmptyString"
+      }
+    },
+    "sourceIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^S[0-9]+$"
+      },
+      "description": "對應 meta.sources[].id"
+    },
+    "stockAnalysis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "meta",
+        "valuation",
+        "fundamentals",
+        "technicals",
+        "newsAndCatalysts",
+        "changelog"
+      ],
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "schemaVersion": {
+          "type": "string",
+          "pattern": "^1\\.[0-9]+\\.[0-9]+$"
+        },
+        "meta": {
+          "$ref": "#/$defs/meta"
+        },
+        "valuation": {
+          "$ref": "#/$defs/valuation"
+        },
+        "fundamentals": {
+          "$ref": "#/$defs/fundamentals"
+        },
+        "technicals": {
+          "$ref": "#/$defs/technicals"
+        },
+        "newsAndCatalysts": {
+          "$ref": "#/$defs/newsAndCatalysts"
+        },
+        "changelog": {
+          "type": "array",
+          "minItems": 1,
+          "description": "由新到舊排列；changelog[0] 永遠是本次更新",
+          "items": {
+            "$ref": "#/$defs/changelogEntry"
+          }
+        }
+      }
+    },
+    "meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "analyst",
+        "dataAsOf",
+        "language",
+        "sources",
+        "dataQualityNotes"
+      ],
+      "properties": {
+        "analyst": {
+          "$ref": "#/$defs/nonEmptyString",
+          "description": "產出者，例如 Claude Code (claude-opus-5-5)"
+        },
+        "dataAsOf": {
+          "$ref": "#/$defs/isoDate",
+          "description": "市場數據的收盤日"
+        },
+        "language": {
+          "const": "zh-Hant"
+        },
+        "sources": {
+          "type": "array",
+          "minItems": 10,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "title",
+              "publisher",
+              "url",
+              "date"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^S[0-9]+$"
+              },
+              "title": {
+                "$ref": "#/$defs/nonEmptyString"
+              },
+              "publisher": {
+                "$ref": "#/$defs/nonEmptyString"
+              },
+              "url": {
+                "type": "string",
+                "format": "uri"
+              },
+              "date": {
+                "$ref": "#/$defs/isoDateOrNull"
+              }
+            }
+          }
+        },
+        "dataQualityNotes": {
+          "$ref": "#/$defs/stringList",
+          "description": "估算值、口徑差異、資料延遲等揭露"
+        }
+      }
+    },
+    "scenario": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "targetPrice",
+        "impliedUpsidePct",
+        "probabilityPct",
+        "method",
+        "basisPeriod",
+        "metricName",
+        "metricValue",
+        "targetMultiple",
+        "formula",
+        "thesis",
+        "keyAssumptions"
+      ],
+      "properties": {
+        "targetPrice": {
+          "$ref": "#/$defs/price"
+        },
+        "impliedUpsidePct": {
+          "$ref": "#/$defs/pct",
+          "description": "相對 valuation.currentPrice 的隱含漲跌幅"
+        },
+        "probabilityPct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "method": {
+          "type": "string",
+          "enum": [
+            "Forward P/E",
+            "PEG",
+            "EV/EBITDA",
+            "P/FCF",
+            "DCF",
+            "EV/Sales",
+            "Blended"
+          ]
+        },
+        "basisPeriod": {
+          "$ref": "#/$defs/nonEmptyString",
+          "description": "例如 FY2028E"
+        },
+        "metricName": {
+          "$ref": "#/$defs/nonEmptyString",
+          "description": "例如 Non-GAAP EPS、EBITDA、FCF/share"
+        },
+        "metricValue": {
+          "type": "number"
+        },
+        "targetMultiple": {
+          "$ref": "#/$defs/numberOrNull",
+          "description": "DCF 時可為 null"
+        },
+        "formula": {
+          "$ref": "#/$defs/nonEmptyString",
+          "description": "可重算的推導式，例如 $7.20 × 30x = $216"
+        },
+        "thesis": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "keyAssumptions": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "$ref": "#/$defs/nonEmptyString"
+          }
+        },
+        "dcf": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": false,
+          "required": [
+            "waccPct",
+            "terminalGrowthPct",
+            "forecastYears",
+            "netCashUSDm",
+            "dilutedSharesM"
+          ],
+          "properties": {
+            "waccPct": {
+              "$ref": "#/$defs/pct"
+            },
+            "terminalGrowthPct": {
+              "$ref": "#/$defs/pct"
+            },
+            "forecastYears": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "netCashUSDm": {
+              "type": "number"
+            },
+            "dilutedSharesM": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            }
+          }
+        }
+      }
+    },
+    "valuation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ticker",
+        "exchange",
+        "name",
+        "nameZh",
+        "sector",
+        "industry",
+        "currency",
+        "currentPrice",
+        "priceDate",
+        "sharesOutstandingM",
+        "updatedAt",
+        "rating",
+        "ratingRationale",
+        "fiscalYearNote",
+        "timeHorizonMonths",
+        "scenarios",
+        "streetConsensus",
+        "priceZones"
+      ],
+      "properties": {
+        "ticker": {
+          "$ref": "#/$defs/ticker"
+        },
+        "exchange": {
+          "$ref": "#/$defs/exchange"
+        },
+        "name": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "nameZh": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "sector": {
+          "$ref": "#/$defs/nonEmptyString",
+          "description": "GICS Sector，例如 Information Technology"
+        },
+        "industry": {
+          "$ref": "#/$defs/nonEmptyString",
+          "description": "例如 Semiconductors"
+        },
+        "currency": {
+          "const": "USD"
+        },
+        "currentPrice": {
+          "$ref": "#/$defs/price",
+          "description": "分析當下股價（priceDate 收盤）"
+        },
+        "priceDate": {
+          "$ref": "#/$defs/isoDate"
+        },
+        "sharesOutstandingM": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "流通在外股數（百萬股），GAS 無即時市值時用於估算市值"
+        },
+        "updatedAt": {
+          "$ref": "#/$defs/isoDateTime"
+        },
+        "rating": {
+          "$ref": "#/$defs/rating"
+        },
+        "ratingRationale": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "fiscalYearNote": {
+          "$ref": "#/$defs/nonEmptyString",
+          "description": "會計年度對照，例如 FY2028 = 2027/2–2028/1"
+        },
+        "timeHorizonMonths": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        },
+        "scenarios": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "bear",
+            "base",
+            "bull"
+          ],
+          "properties": {
+            "bear": {
+              "$ref": "#/$defs/scenario"
+            },
+            "base": {
+              "$ref": "#/$defs/scenario"
+            },
+            "bull": {
+              "$ref": "#/$defs/scenario"
+            }
+          }
+        },
+        "streetConsensus": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "asOf",
+            "source",
+            "analystCount",
+            "lowTarget",
+            "medianTarget",
+            "meanTarget",
+            "highTarget",
+            "ratings",
+            "consensusRating",
+            "notes"
+          ],
+          "properties": {
+            "asOf": {
+              "$ref": "#/$defs/isoDate"
+            },
+            "source": {
+              "$ref": "#/$defs/nonEmptyString"
+            },
+            "analystCount": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "lowTarget": {
+              "$ref": "#/$defs/price"
+            },
+            "medianTarget": {
+              "$ref": "#/$defs/price"
+            },
+            "meanTarget": {
+              "$ref": "#/$defs/priceOrNull"
+            },
+            "highTarget": {
+              "$ref": "#/$defs/price"
+            },
+            "ratings": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "buy",
+                "hold",
+                "sell"
+              ],
+              "description": "分析師家數；buy 含 Strong Buy／Outperform，sell 含 Underperform",
+              "properties": {
+                "buy": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "hold": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "sell": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              }
+            },
+            "consensusRating": {
+              "$ref": "#/$defs/nonEmptyString"
+            },
+            "notes": {
+              "type": "string"
+            }
+          }
+        },
+        "priceZones": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "basis",
+            "cheap",
+            "fair",
+            "expensive",
+            "methodology",
+            "forwardEPS",
+            "targetPE",
+            "expectedCAGRPct",
+            "pegTarget",
+            "sliderBounds"
+          ],
+          "properties": {
+            "basis": {
+              "$ref": "#/$defs/nonEmptyString",
+              "description": "例如 FY2028E Non-GAAP EPS $7.20"
+            },
+            "cheap": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "max",
+                "multiple"
+              ],
+              "properties": {
+                "max": {
+                  "$ref": "#/$defs/price"
+                },
+                "multiple": {
+                  "$ref": "#/$defs/numberOrNull"
+                }
+              }
+            },
+            "fair": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "low",
+                "high",
+                "multipleLow",
+                "multipleHigh"
+              ],
+              "properties": {
+                "low": {
+                  "$ref": "#/$defs/price"
+                },
+                "high": {
+                  "$ref": "#/$defs/price"
+                },
+                "multipleLow": {
+                  "$ref": "#/$defs/numberOrNull"
+                },
+                "multipleHigh": {
+                  "$ref": "#/$defs/numberOrNull"
+                }
+              }
+            },
+            "expensive": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "min",
+                "multiple"
+              ],
+              "properties": {
+                "min": {
+                  "$ref": "#/$defs/price"
+                },
+                "multiple": {
+                  "$ref": "#/$defs/numberOrNull"
+                }
+              }
+            },
+            "methodology": {
+              "$ref": "#/$defs/nonEmptyString"
+            },
+            "forwardEPS": {
+              "type": "number",
+              "description": "互動試算器預設 EPS"
+            },
+            "targetPE": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "expectedCAGRPct": {
+              "$ref": "#/$defs/pct"
+            },
+            "pegTarget": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "PEG 合理倍數，試算器以 CAGR × PEG 推估合理 P/E"
+            },
+            "sliderBounds": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "eps",
+                "pe",
+                "cagr"
+              ],
+              "properties": {
+                "eps": {
+                  "$ref": "#/$defs/sliderBound"
+                },
+                "pe": {
+                  "$ref": "#/$defs/sliderBound"
+                },
+                "cagr": {
+                  "$ref": "#/$defs/sliderBound"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "sliderBound": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "min",
+        "max",
+        "step"
+      ],
+      "properties": {
+        "min": {
+          "type": "number"
+        },
+        "max": {
+          "type": "number"
+        },
+        "step": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      }
+    },
+    "fundamentals": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "moatAndBusinessModel",
+        "earningsAndGuidance",
+        "financialMetrics",
+        "growthDrivers",
+        "secRisks"
+      ],
+      "properties": {
+        "moatAndBusinessModel": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "businessSummary",
+            "moatRating",
+            "moatSources",
+            "competitivePosition",
+            "keyCompetitors",
+            "segmentMix",
+            "productLines"
+          ],
+          "properties": {
+            "businessSummary": {
+              "$ref": "#/$defs/nonEmptyString"
+            },
+            "moatRating": {
+              "type": "string",
+              "enum": [
+                "Wide",
+                "Narrow",
+                "None"
+              ]
+            },
+            "moatSources": {
+              "type": "array",
+              "minItems": 2,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "type",
+                  "title",
+                  "description"
+                ],
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "IntangibleAssets",
+                      "SwitchingCosts",
+                      "NetworkEffects",
+                      "CostAdvantage",
+                      "EfficientScale",
+                      "TechnologyLeadership"
+                    ]
+                  },
+                  "title": {
+                    "$ref": "#/$defs/nonEmptyString"
+                  },
+                  "description": {
+                    "$ref": "#/$defs/nonEmptyString"
+                  }
+                }
+              }
+            },
+            "competitivePosition": {
+              "$ref": "#/$defs/nonEmptyString"
+            },
+            "keyCompetitors": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "name",
+                  "ticker",
+                  "overlap"
+                ],
+                "properties": {
+                  "name": {
+                    "$ref": "#/$defs/nonEmptyString"
+                  },
+                  "ticker": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "overlap": {
+                    "$ref": "#/$defs/nonEmptyString"
+                  }
+                }
+              }
+            },
+            "segmentMix": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "period",
+                "segments"
+              ],
+              "properties": {
+                "period": {
+                  "$ref": "#/$defs/nonEmptyString"
+                },
+                "segments": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "name",
+                      "revenueUSDm",
+                      "sharePct",
+                      "yoyPct",
+                      "qoqPct",
+                      "commentary"
+                    ],
+                    "properties": {
+                      "name": {
+                        "$ref": "#/$defs/nonEmptyString"
+                      },
+                      "revenueUSDm": {
+                        "type": "number",
+                        "minimum": 0
+                      },
+                      "sharePct": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 100
+                      },
+                      "yoyPct": {
+                        "$ref": "#/$defs/pctOrNull"
+                      },
+                      "qoqPct": {
+                        "$ref": "#/$defs/pctOrNull"
+                      },
+                      "commentary": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "productLines": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "name",
+                  "segment",
+                  "description",
+                  "momentum"
+                ],
+                "properties": {
+                  "name": {
+                    "$ref": "#/$defs/nonEmptyString"
+                  },
+                  "segment": {
+                    "$ref": "#/$defs/nonEmptyString"
+                  },
+                  "description": {
+                    "$ref": "#/$defs/nonEmptyString"
+                  },
+                  "momentum": {
+                    "type": "string",
+                    "enum": [
+                      "Accelerating",
+                      "Growing",
+                      "Stable",
+                      "Declining"
+                    ]
+                  }
+                }
+              },
+              "minItems": 3
+            }
+          }
+        },
+        "earningsAndGuidance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "latestQuarter",
+            "guidance",
+            "fullYearOutlook",
+            "earningsCallTakeaways"
+          ],
+          "properties": {
+            "latestQuarter": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "fiscalPeriod",
+                "periodEnd",
+                "reportDate",
+                "revenue",
+                "nonGaapEps",
+                "grossMarginNonGaapPct",
+                "operatingMarginNonGaapPct",
+                "stockReactionPct",
+                "highlights"
+              ],
+              "properties": {
+                "fiscalPeriod": {
+                  "$ref": "#/$defs/nonEmptyString"
+                },
+                "periodEnd": {
+                  "$ref": "#/$defs/isoDate"
+                },
+                "reportDate": {
+                  "$ref": "#/$defs/isoDate"
+                },
+                "revenue": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "actualUSDm",
+                    "consensusUSDm",
+                    "guidanceMidUSDm",
+                    "yoyPct",
+                    "qoqPct",
+                    "result"
+                  ],
+                  "properties": {
+                    "actualUSDm": {
+                      "type": "number"
+                    },
+                    "consensusUSDm": {
+                      "$ref": "#/$defs/numberOrNull"
+                    },
+                    "guidanceMidUSDm": {
+                      "$ref": "#/$defs/numberOrNull"
+                    },
+                    "yoyPct": {
+                      "$ref": "#/$defs/pctOrNull"
+                    },
+                    "qoqPct": {
+                      "$ref": "#/$defs/pctOrNull"
+                    },
+                    "result": {
+                      "$ref": "#/$defs/beatMiss"
+                    }
+                  }
+                },
+                "nonGaapEps": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "actual",
+                    "consensus",
+                    "guidanceMid",
+                    "yoyPct",
+                    "result"
+                  ],
+                  "properties": {
+                    "actual": {
+                      "type": "number"
+                    },
+                    "consensus": {
+                      "$ref": "#/$defs/numberOrNull"
+                    },
+                    "guidanceMid": {
+                      "$ref": "#/$defs/numberOrNull"
+                    },
+                    "yoyPct": {
+                      "$ref": "#/$defs/pctOrNull"
+                    },
+                    "result": {
+                      "$ref": "#/$defs/beatMiss"
+                    }
+                  }
+                },
+                "grossMarginNonGaapPct": {
+                  "$ref": "#/$defs/pct"
+                },
+                "operatingMarginNonGaapPct": {
+                  "$ref": "#/$defs/pct"
+                },
+                "stockReactionPct": {
+                  "$ref": "#/$defs/pctOrNull",
+                  "description": "財報公布後首個交易日收盤漲跌"
+                },
+                "highlights": {
+                  "$ref": "#/$defs/stringList"
+                }
+              }
+            },
+            "guidance": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "period",
+                "revenue",
+                "nonGaapEps",
+                "grossMarginNonGaapPct",
+                "opexNonGaapUSDm",
+                "vsConsensus",
+                "commentary"
+              ],
+              "properties": {
+                "period": {
+                  "$ref": "#/$defs/nonEmptyString"
+                },
+                "revenue": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "lowUSDm",
+                    "midUSDm",
+                    "highUSDm",
+                    "consensusBeforeUSDm",
+                    "yoyPct"
+                  ],
+                  "properties": {
+                    "lowUSDm": {
+                      "type": "number"
+                    },
+                    "midUSDm": {
+                      "type": "number"
+                    },
+                    "highUSDm": {
+                      "type": "number"
+                    },
+                    "consensusBeforeUSDm": {
+                      "$ref": "#/$defs/numberOrNull"
+                    },
+                    "yoyPct": {
+                      "$ref": "#/$defs/pctOrNull"
+                    }
+                  }
+                },
+                "nonGaapEps": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "low",
+                    "mid",
+                    "high",
+                    "consensusBefore"
+                  ],
+                  "properties": {
+                    "low": {
+                      "type": "number"
+                    },
+                    "mid": {
+                      "type": "number"
+                    },
+                    "high": {
+                      "type": "number"
+                    },
+                    "consensusBefore": {
+                      "$ref": "#/$defs/numberOrNull"
+                    }
+                  }
+                },
+                "grossMarginNonGaapPct": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "additionalProperties": false,
+                  "required": [
+                    "low",
+                    "high"
+                  ],
+                  "properties": {
+                    "low": {
+                      "$ref": "#/$defs/pct"
+                    },
+                    "high": {
+                      "$ref": "#/$defs/pct"
+                    }
+                  }
+                },
+                "opexNonGaapUSDm": {
+                  "$ref": "#/$defs/numberOrNull"
+                },
+                "vsConsensus": {
+                  "type": "string",
+                  "enum": [
+                    "Above",
+                    "InLine",
+                    "Below",
+                    "NA"
+                  ]
+                },
+                "commentary": {
+                  "$ref": "#/$defs/nonEmptyString"
+                }
+              }
+            },
+            "fullYearOutlook": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "period",
+                  "metric",
+                  "value",
+                  "change",
+                  "note"
+                ],
+                "properties": {
+                  "period": {
+                    "$ref": "#/$defs/nonEmptyString"
+                  },
+                  "metric": {
+                    "$ref": "#/$defs/nonEmptyString"
+                  },
+                  "value": {
+                    "$ref": "#/$defs/nonEmptyString"
+                  },
+                  "change": {
+                    "type": "string",
+                    "enum": [
+                      "Raised",
+                      "Maintained",
+                      "Lowered",
+                      "Initiated"
+                    ]
+                  },
+                  "note": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "earningsCallTakeaways": {
+              "type": "array",
+              "minItems": 5,
+              "items": {
+                "$ref": "#/$defs/nonEmptyString"
+              }
+            }
+          }
+        },
+        "financialMetrics": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "unit",
+            "quarterly",
+            "ttm",
+            "returns",
+            "ruleOf40",
+            "balanceSheet",
+            "capitalReturn",
+            "commentary"
+          ],
+          "properties": {
+            "unit": {
+              "const": "USD M"
+            },
+            "quarterly": {
+              "type": "array",
+              "minItems": 5,
+              "description": "由舊到新排列；isEstimate=true 代表公司指引或估計值",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "period",
+                  "periodEnd",
+                  "isEstimate",
+                  "revenue",
+                  "revenueYoYPct",
+                  "grossMarginNonGaapPct",
+                  "operatingMarginNonGaapPct",
+                  "nonGaapEps",
+                  "operatingCashFlow",
+                  "capex",
+                  "fcf",
+                  "fcfMarginPct",
+                  "sbc",
+                  "sbcPctOfRevenue",
+                  "buybacks"
+                ],
+                "properties": {
+                  "period": {
+                    "$ref": "#/$defs/nonEmptyString"
+                  },
+                  "periodEnd": {
+                    "$ref": "#/$defs/isoDate"
+                  },
+                  "isEstimate": {
+                    "type": "boolean"
+                  },
+                  "revenue": {
+                    "type": "number"
+                  },
+                  "revenueYoYPct": {
+                    "$ref": "#/$defs/pctOrNull"
+                  },
+                  "grossMarginNonGaapPct": {
+                    "$ref": "#/$defs/pctOrNull"
+                  },
+                  "operatingMarginNonGaapPct": {
+                    "$ref": "#/$defs/pctOrNull"
+                  },
+                  "nonGaapEps": {
+                    "$ref": "#/$defs/numberOrNull"
+                  },
+                  "operatingCashFlow": {
+                    "$ref": "#/$defs/numberOrNull"
+                  },
+                  "capex": {
+                    "$ref": "#/$defs/numberOrNull"
+                  },
+                  "fcf": {
+                    "$ref": "#/$defs/numberOrNull"
+                  },
+                  "fcfMarginPct": {
+                    "$ref": "#/$defs/pctOrNull"
+                  },
+                  "sbc": {
+                    "$ref": "#/$defs/numberOrNull"
+                  },
+                  "sbcPctOfRevenue": {
+                    "$ref": "#/$defs/pctOrNull"
+                  },
+                  "buybacks": {
+                    "$ref": "#/$defs/numberOrNull"
+                  }
+                }
+              }
+            },
+            "ttm": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "period",
+                "revenue",
+                "revenueYoYPct",
+                "fcf",
+                "fcfMarginPct",
+                "sbcPctOfRevenue",
+                "buybacks",
+                "dividends"
+              ],
+              "properties": {
+                "period": {
+                  "$ref": "#/$defs/nonEmptyString"
+                },
+                "revenue": {
+                  "type": "number"
+                },
+                "revenueYoYPct": {
+                  "$ref": "#/$defs/pctOrNull"
+                },
+                "fcf": {
+                  "$ref": "#/$defs/numberOrNull"
+                },
+                "fcfMarginPct": {
+                  "$ref": "#/$defs/pctOrNull"
+                },
+                "sbcPctOfRevenue": {
+                  "$ref": "#/$defs/pctOrNull"
+                },
+                "buybacks": {
+                  "$ref": "#/$defs/numberOrNull"
+                },
+                "dividends": {
+                  "$ref": "#/$defs/numberOrNull"
+                }
+              }
+            },
+            "returns": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "roicPct",
+                "roePct",
+                "basis"
+              ],
+              "properties": {
+                "roicPct": {
+                  "$ref": "#/$defs/pctOrNull"
+                },
+                "roePct": {
+                  "$ref": "#/$defs/pctOrNull"
+                },
+                "basis": {
+                  "$ref": "#/$defs/nonEmptyString"
+                }
+              }
+            },
+            "ruleOf40": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "applicable",
+                "score",
+                "basis"
+              ],
+              "properties": {
+                "applicable": {
+                  "type": "boolean"
+                },
+                "score": {
+                  "$ref": "#/$defs/numberOrNull"
+                },
+                "basis": {
+                  "type": "string"
+                }
+              }
+            },
+            "balanceSheet": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "asOf",
+                "cashUSDm",
+                "totalDebtUSDm",
+                "netCashUSDm",
+                "notes"
+              ],
+              "properties": {
+                "asOf": {
+                  "$ref": "#/$defs/isoDate"
+                },
+                "cashUSDm": {
+                  "type": "number"
+                },
+                "totalDebtUSDm": {
+                  "type": "number"
+                },
+                "netCashUSDm": {
+                  "type": "number",
+                  "description": "負值代表淨負債"
+                },
+                "notes": {
+                  "type": "string"
+                }
+              }
+            },
+            "capitalReturn": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "buybackAuthorizationRemainingUSDm",
+                "dividendPerShareAnnual",
+                "notes"
+              ],
+              "properties": {
+                "buybackAuthorizationRemainingUSDm": {
+                  "$ref": "#/$defs/numberOrNull"
+                },
+                "dividendPerShareAnnual": {
+                  "$ref": "#/$defs/numberOrNull"
+                },
+                "notes": {
+                  "type": "string"
+                }
+              }
+            },
+            "commentary": {
+              "$ref": "#/$defs/nonEmptyString"
+            }
+          }
+        },
+        "growthDrivers": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "title",
+              "description",
+              "timeframe",
+              "magnitude"
+            ],
+            "properties": {
+              "title": {
+                "$ref": "#/$defs/nonEmptyString"
+              },
+              "description": {
+                "$ref": "#/$defs/nonEmptyString"
+              },
+              "timeframe": {
+                "$ref": "#/$defs/nonEmptyString"
+              },
+              "magnitude": {
+                "$ref": "#/$defs/level3"
+              }
+            }
+          }
+        },
+        "secRisks": {
+          "type": "array",
+          "minItems": 5,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "title",
+              "description",
+              "source",
+              "severity",
+              "mitigation"
+            ],
+            "properties": {
+              "title": {
+                "$ref": "#/$defs/nonEmptyString"
+              },
+              "description": {
+                "$ref": "#/$defs/nonEmptyString"
+              },
+              "source": {
+                "$ref": "#/$defs/nonEmptyString",
+                "description": "例如 10-K Risk Factors、8-K、產業競爭"
+              },
+              "severity": {
+                "$ref": "#/$defs/level3"
+              },
+              "mitigation": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "beatMiss": {
+      "type": "string",
+      "enum": [
+        "Beat",
+        "Miss",
+        "InLine"
+      ]
+    },
+    "returnsWindow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "m1",
+        "m3",
+        "ytd",
+        "y1"
+      ],
+      "properties": {
+        "m1": {
+          "$ref": "#/$defs/pctOrNull"
+        },
+        "m3": {
+          "$ref": "#/$defs/pctOrNull"
+        },
+        "ytd": {
+          "$ref": "#/$defs/pctOrNull"
+        },
+        "y1": {
+          "$ref": "#/$defs/pctOrNull"
+        }
+      }
+    },
+    "trendItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "direction",
+        "comment"
+      ],
+      "properties": {
+        "direction": {
+          "$ref": "#/$defs/direction"
+        },
+        "comment": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "technicals": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "asOf",
+        "priceRange52w",
+        "trendSummary",
+        "relativeStrength",
+        "keyLevels",
+        "marketStructureAndFlow"
+      ],
+      "properties": {
+        "asOf": {
+          "$ref": "#/$defs/isoDate"
+        },
+        "priceRange52w": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "high",
+            "highDate",
+            "low",
+            "lowDate"
+          ],
+          "description": "分析當下的 52 週盤中高低點（GAS 即時資料不可用時的備援）",
+          "properties": {
+            "high": {
+              "$ref": "#/$defs/price"
+            },
+            "highDate": {
+              "$ref": "#/$defs/isoDate"
+            },
+            "low": {
+              "$ref": "#/$defs/price"
+            },
+            "lowDate": {
+              "$ref": "#/$defs/isoDate"
+            }
+          }
+        },
+        "trendSummary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "shortTerm",
+            "mediumTerm",
+            "longTerm",
+            "movingAverages",
+            "summary"
+          ],
+          "properties": {
+            "shortTerm": {
+              "$ref": "#/$defs/trendItem"
+            },
+            "mediumTerm": {
+              "$ref": "#/$defs/trendItem"
+            },
+            "longTerm": {
+              "$ref": "#/$defs/trendItem"
+            },
+            "movingAverages": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "sma20",
+                "sma50",
+                "sma200",
+                "vwap"
+              ],
+              "properties": {
+                "sma20": {
+                  "$ref": "#/$defs/price"
+                },
+                "sma50": {
+                  "$ref": "#/$defs/price"
+                },
+                "sma200": {
+                  "$ref": "#/$defs/price"
+                },
+                "vwap": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "value",
+                    "anchor"
+                  ],
+                  "properties": {
+                    "value": {
+                      "$ref": "#/$defs/price"
+                    },
+                    "anchor": {
+                      "$ref": "#/$defs/nonEmptyString",
+                      "description": "VWAP 起算點，例如 2026 YTD Anchored VWAP"
+                    }
+                  }
+                }
+              }
+            },
+            "summary": {
+              "$ref": "#/$defs/nonEmptyString"
+            }
+          }
+        },
+        "relativeStrength": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "stockReturns",
+            "benchmarks",
+            "commentary"
+          ],
+          "properties": {
+            "stockReturns": {
+              "$ref": "#/$defs/returnsWindow"
+            },
+            "benchmarks": {
+              "type": "array",
+              "minItems": 4,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "symbol",
+                  "name",
+                  "role",
+                  "returns"
+                ],
+                "properties": {
+                  "symbol": {
+                    "$ref": "#/$defs/ticker"
+                  },
+                  "name": {
+                    "$ref": "#/$defs/nonEmptyString"
+                  },
+                  "role": {
+                    "type": "string",
+                    "enum": [
+                      "Market",
+                      "Growth",
+                      "Sector",
+                      "Peer"
+                    ]
+                  },
+                  "returns": {
+                    "$ref": "#/$defs/returnsWindow"
+                  }
+                }
+              }
+            },
+            "commentary": {
+              "$ref": "#/$defs/nonEmptyString"
+            }
+          }
+        },
+        "keyLevels": {
+          "type": "array",
+          "minItems": 5,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "type",
+              "price",
+              "rangeLow",
+              "rangeHigh",
+              "significance"
+            ],
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "StrongSupport",
+                  "SecondarySupport",
+                  "Pivot",
+                  "SecondaryResistance",
+                  "MajorResistance"
+                ]
+              },
+              "price": {
+                "$ref": "#/$defs/price"
+              },
+              "rangeLow": {
+                "$ref": "#/$defs/priceOrNull"
+              },
+              "rangeHigh": {
+                "$ref": "#/$defs/priceOrNull"
+              },
+              "significance": {
+                "$ref": "#/$defs/nonEmptyString"
+              }
+            }
+          }
+        },
+        "marketStructureAndFlow": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "momentum",
+            "institutional",
+            "insider",
+            "shortInterest",
+            "options"
+          ],
+          "properties": {
+            "momentum": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "rsi14",
+                "rsiState",
+                "macd",
+                "avgVolume50dM",
+                "volumeComment"
+              ],
+              "properties": {
+                "rsi14": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 100
+                },
+                "rsiState": {
+                  "type": "string",
+                  "enum": [
+                    "Overbought",
+                    "Neutral",
+                    "Oversold"
+                  ]
+                },
+                "macd": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "line",
+                    "signal",
+                    "histogram",
+                    "state"
+                  ],
+                  "properties": {
+                    "line": {
+                      "type": "number"
+                    },
+                    "signal": {
+                      "type": "number"
+                    },
+                    "histogram": {
+                      "type": "number"
+                    },
+                    "state": {
+                      "type": "string",
+                      "enum": [
+                        "BullishCross",
+                        "BearishCross",
+                        "Bullish",
+                        "Bearish",
+                        "Neutral"
+                      ]
+                    }
+                  }
+                },
+                "avgVolume50dM": {
+                  "$ref": "#/$defs/numberOrNull"
+                },
+                "volumeComment": {
+                  "$ref": "#/$defs/nonEmptyString"
+                }
+              }
+            },
+            "institutional": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "asOfQuarter",
+                "ownershipPct",
+                "holdersCount",
+                "summary",
+                "notableHolders"
+              ],
+              "properties": {
+                "asOfQuarter": {
+                  "$ref": "#/$defs/nonEmptyString"
+                },
+                "ownershipPct": {
+                  "$ref": "#/$defs/pctOrNull"
+                },
+                "holdersCount": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                },
+                "summary": {
+                  "$ref": "#/$defs/nonEmptyString"
+                },
+                "notableHolders": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "holder",
+                      "action",
+                      "detail"
+                    ],
+                    "properties": {
+                      "holder": {
+                        "$ref": "#/$defs/nonEmptyString"
+                      },
+                      "action": {
+                        "type": "string",
+                        "enum": [
+                          "Increased",
+                          "Decreased",
+                          "New",
+                          "Exited",
+                          "Unchanged",
+                          "Holding"
+                        ]
+                      },
+                      "detail": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "insider": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "period",
+                "netActivity",
+                "summary",
+                "transactions"
+              ],
+              "properties": {
+                "period": {
+                  "$ref": "#/$defs/nonEmptyString"
+                },
+                "netActivity": {
+                  "type": "string",
+                  "enum": [
+                    "NetBuy",
+                    "NetSell",
+                    "Neutral"
+                  ]
+                },
+                "summary": {
+                  "$ref": "#/$defs/nonEmptyString"
+                },
+                "transactions": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "date",
+                      "insider",
+                      "role",
+                      "type",
+                      "shares",
+                      "price",
+                      "valueUSD",
+                      "plan10b51"
+                    ],
+                    "properties": {
+                      "date": {
+                        "$ref": "#/$defs/isoDate"
+                      },
+                      "insider": {
+                        "$ref": "#/$defs/nonEmptyString"
+                      },
+                      "role": {
+                        "$ref": "#/$defs/nonEmptyString"
+                      },
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "Buy",
+                          "Sell",
+                          "OptionExercise",
+                          "TaxWithholding",
+                          "Gift"
+                        ]
+                      },
+                      "shares": {
+                        "type": [
+                          "integer",
+                          "null"
+                        ]
+                      },
+                      "price": {
+                        "$ref": "#/$defs/priceOrNull"
+                      },
+                      "valueUSD": {
+                        "$ref": "#/$defs/numberOrNull"
+                      },
+                      "plan10b51": {
+                        "type": [
+                          "boolean",
+                          "null"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "shortInterest": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "asOf",
+                "sharesShortM",
+                "pctOfFloat",
+                "daysToCover",
+                "trend",
+                "comment"
+              ],
+              "properties": {
+                "asOf": {
+                  "$ref": "#/$defs/isoDate",
+                  "description": "結算日 settlement date"
+                },
+                "sharesShortM": {
+                  "$ref": "#/$defs/numberOrNull"
+                },
+                "pctOfFloat": {
+                  "$ref": "#/$defs/pctOrNull"
+                },
+                "daysToCover": {
+                  "$ref": "#/$defs/numberOrNull"
+                },
+                "trend": {
+                  "type": "string",
+                  "enum": [
+                    "Rising",
+                    "Falling",
+                    "Flat"
+                  ]
+                },
+                "comment": {
+                  "$ref": "#/$defs/nonEmptyString"
+                }
+              }
+            },
+            "options": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "asOf",
+                "putCallRatioOI",
+                "putCallRatioVolume",
+                "iv30Pct",
+                "maxPain",
+                "gammaLevels",
+                "netGammaRegime",
+                "comment"
+              ],
+              "properties": {
+                "asOf": {
+                  "$ref": "#/$defs/isoDate"
+                },
+                "putCallRatioOI": {
+                  "$ref": "#/$defs/numberOrNull"
+                },
+                "putCallRatioVolume": {
+                  "$ref": "#/$defs/numberOrNull"
+                },
+                "iv30Pct": {
+                  "$ref": "#/$defs/pctOrNull"
+                },
+                "maxPain": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "expiry",
+                      "price"
+                    ],
+                    "properties": {
+                      "expiry": {
+                        "$ref": "#/$defs/isoDate"
+                      },
+                      "price": {
+                        "$ref": "#/$defs/price"
+                      }
+                    }
+                  }
+                },
+                "gammaLevels": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "price",
+                      "type",
+                      "note"
+                    ],
+                    "properties": {
+                      "price": {
+                        "$ref": "#/$defs/price"
+                      },
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "CallWall",
+                          "PutWall",
+                          "GammaFlip"
+                        ]
+                      },
+                      "note": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "netGammaRegime": {
+                  "type": "string",
+                  "enum": [
+                    "Positive",
+                    "Negative",
+                    "Neutral"
+                  ]
+                },
+                "comment": {
+                  "$ref": "#/$defs/nonEmptyString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "newsAndCatalysts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "recentNews",
+        "catalystTimeline",
+        "sentimentScore"
+      ],
+      "properties": {
+        "recentNews": {
+          "type": "array",
+          "minItems": 6,
+          "description": "由新到舊排列",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "date",
+              "headline",
+              "type",
+              "impact",
+              "summary",
+              "fundamentalImpact",
+              "sourceIds"
+            ],
+            "properties": {
+              "date": {
+                "$ref": "#/$defs/isoDate"
+              },
+              "headline": {
+                "$ref": "#/$defs/nonEmptyString"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "News",
+                  "8-K",
+                  "EarningsCall",
+                  "AnalystAction",
+                  "Product",
+                  "M&A",
+                  "Macro",
+                  "Index",
+                  "Filing"
+                ]
+              },
+              "impact": {
+                "$ref": "#/$defs/impact"
+              },
+              "summary": {
+                "$ref": "#/$defs/nonEmptyString"
+              },
+              "fundamentalImpact": {
+                "$ref": "#/$defs/nonEmptyString"
+              },
+              "sourceIds": {
+                "$ref": "#/$defs/sourceIds"
+              }
+            }
+          }
+        },
+        "catalystTimeline": {
+          "type": "array",
+          "minItems": 6,
+          "description": "由近到遠排列，涵蓋未來 1~4 季",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "date",
+              "dateConfirmed",
+              "window",
+              "event",
+              "category",
+              "expectedImpact",
+              "importance",
+              "description"
+            ],
+            "properties": {
+              "date": {
+                "$ref": "#/$defs/isoDate",
+                "description": "最佳估計日期；未確認者 dateConfirmed=false"
+              },
+              "dateConfirmed": {
+                "type": "boolean"
+              },
+              "window": {
+                "$ref": "#/$defs/nonEmptyString",
+                "description": "例如 FQ3 FY27／2026-12 上旬（預估）"
+              },
+              "event": {
+                "$ref": "#/$defs/nonEmptyString"
+              },
+              "category": {
+                "type": "string",
+                "enum": [
+                  "Earnings",
+                  "Conference",
+                  "Product",
+                  "CustomerCapEx",
+                  "Macro",
+                  "Regulatory",
+                  "Corporate",
+                  "Index"
+                ]
+              },
+              "expectedImpact": {
+                "type": "string",
+                "enum": [
+                  "Bullish",
+                  "Bearish",
+                  "Neutral",
+                  "Binary"
+                ]
+              },
+              "importance": {
+                "$ref": "#/$defs/level3"
+              },
+              "description": {
+                "$ref": "#/$defs/nonEmptyString"
+              }
+            }
+          }
+        },
+        "sentimentScore": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "score",
+            "label",
+            "components",
+            "bullCase",
+            "bearCase",
+            "verdict"
+          ],
+          "properties": {
+            "score": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "label": {
+              "$ref": "#/$defs/nonEmptyString"
+            },
+            "components": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "factor",
+                  "score",
+                  "weightPct",
+                  "comment"
+                ],
+                "properties": {
+                  "factor": {
+                    "$ref": "#/$defs/nonEmptyString"
+                  },
+                  "score": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100
+                  },
+                  "weightPct": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100
+                  },
+                  "comment": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "bullCase": {
+              "type": "array",
+              "minItems": 3,
+              "items": {
+                "$ref": "#/$defs/nonEmptyString"
+              }
+            },
+            "bearCase": {
+              "type": "array",
+              "minItems": 3,
+              "items": {
+                "$ref": "#/$defs/nonEmptyString"
+              }
+            },
+            "verdict": {
+              "$ref": "#/$defs/nonEmptyString"
+            }
+          }
+        }
+      }
+    },
+    "changelogEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "date",
+        "priceAtUpdate",
+        "ratingFrom",
+        "ratingTo",
+        "baseTargetFrom",
+        "baseTargetTo",
+        "bearTarget",
+        "bullTarget",
+        "previousThesis",
+        "summary",
+        "keyChanges"
+      ],
+      "properties": {
+        "date": {
+          "$ref": "#/$defs/isoDate"
+        },
+        "priceAtUpdate": {
+          "$ref": "#/$defs/price"
+        },
+        "ratingFrom": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/rating"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ratingTo": {
+          "$ref": "#/$defs/rating"
+        },
+        "baseTargetFrom": {
+          "$ref": "#/$defs/priceOrNull",
+          "description": "首次覆蓋為 null"
+        },
+        "baseTargetTo": {
+          "$ref": "#/$defs/price"
+        },
+        "bearTarget": {
+          "$ref": "#/$defs/price"
+        },
+        "bullTarget": {
+          "$ref": "#/$defs/price"
+        },
+        "previousThesis": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "更新前的核心觀點摘要；首次覆蓋為 null"
+        },
+        "summary": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "keyChanges": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/nonEmptyString"
+          }
+        }
+      }
+    },
+    "indexFile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "generatedAt",
+        "count",
+        "stocks"
+      ],
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "schemaVersion": {
+          "type": "string",
+          "pattern": "^1\\.[0-9]+\\.[0-9]+$"
+        },
+        "generatedAt": {
+          "$ref": "#/$defs/isoDateTime"
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "stocks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "ticker",
+              "exchange",
+              "name",
+              "nameZh",
+              "sector",
+              "industry",
+              "rating",
+              "currentPrice",
+              "priceDate",
+              "bearTarget",
+              "baseTarget",
+              "bullTarget",
+              "baseUpsidePct",
+              "streetMedianTarget",
+              "updatedAt",
+              "file"
+            ],
+            "properties": {
+              "ticker": {
+                "$ref": "#/$defs/ticker"
+              },
+              "exchange": {
+                "$ref": "#/$defs/exchange"
+              },
+              "name": {
+                "$ref": "#/$defs/nonEmptyString"
+              },
+              "nameZh": {
+                "$ref": "#/$defs/nonEmptyString"
+              },
+              "sector": {
+                "$ref": "#/$defs/nonEmptyString"
+              },
+              "industry": {
+                "$ref": "#/$defs/nonEmptyString"
+              },
+              "rating": {
+                "$ref": "#/$defs/rating"
+              },
+              "currentPrice": {
+                "$ref": "#/$defs/price"
+              },
+              "priceDate": {
+                "$ref": "#/$defs/isoDate"
+              },
+              "bearTarget": {
+                "$ref": "#/$defs/price"
+              },
+              "baseTarget": {
+                "$ref": "#/$defs/price"
+              },
+              "bullTarget": {
+                "$ref": "#/$defs/price"
+              },
+              "baseUpsidePct": {
+                "$ref": "#/$defs/pct"
+              },
+              "streetMedianTarget": {
+                "$ref": "#/$defs/price"
+              },
+              "updatedAt": {
+                "$ref": "#/$defs/isoDateTime"
+              },
+              "file": {
+                "type": "string",
+                "pattern": "^stocks/[A-Z][A-Z0-9.\\-]{0,9}\\.json$"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

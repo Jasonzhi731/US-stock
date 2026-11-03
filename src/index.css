@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---- 設計 token：淺色 ---- */
+:root {
+  color-scheme: light;
+  --bg: #f4f4f1;
+  --surface: #ffffff;
+  --surface-2: #f6f6f3;
+  --surface-3: #ebebe6;
+  --border: rgba(11, 11, 11, 0.1);
+  --border-strong: rgba(11, 11, 11, 0.2);
+  --ink: #0b0b0b;
+  --ink-2: #52514e;
+  --ink-3: #74726c;
+  --accent: #a35f00;
+  --accent-soft: rgba(245, 165, 36, 0.16);
+  --up: #0f7b3a;
+  --down: #c22f2f;
+  --warn: #9a6700;
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --neutral-mark: #b9b8b0;
+  --grid: #e6e5df;
+  --axis: #c3c2b7;
+}
+
+/* ---- 設計 token：深色（預設，華爾街終端風格） ---- */
+.dark {
+  color-scheme: dark;
+  --bg: #07090c;
+  --surface: #0e1116;
+  --surface-2: #141820;
+  --surface-3: #1c212b;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --ink: #eef0f2;
+  --ink-2: #b4bac3;
+  --ink-3: #848c97;
+  --accent: #f5a524;
+  --accent-soft: rgba(245, 165, 36, 0.14);
+  --up: #34c77b;
+  --down: #f26d6d;
+  --warn: #fab219;
+  --series-1: #3987e5;
+  --series-2: #d95926;
+  --neutral-mark: #4a4f58;
+  --grid: #1f242d;
+  --axis: #383d46;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-up: var(--up);
+  --color-down: var(--down);
+  --color-warn: var(--warn);
+  --color-s1: var(--series-1);
+  --color-s2: var(--series-2);
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Mono", "SF Mono", Consolas, "Microsoft JhengHei", monospace;
+}
+
+html {
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+/* 互動拉桿 */
+input[type="range"].slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 28px;
+  background: transparent;
+  cursor: pointer;
+}
+input[type="range"].slider::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(to right, var(--accent) 0%, var(--accent) var(--fill, 50%), var(--surface-3) var(--fill, 50%), var(--surface-3) 100%);
+}
+input[type="range"].slider::-moz-range-track {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--surface-3);
+}
+input[type="range"].slider::-moz-range-progress {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--accent);
+}
+input[type="range"].slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  margin-top: -7px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 0 3px var(--surface);
+}
+input[type="range"].slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--accent);
+}
+input[type="range"].slider:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "us-stocks-dev",
+      "runtimeExecutable": "C:\\Users\\derek.huang\\AppData\\Local\\Programs\\nodejs\\node.exe",
+      "runtimeArgs": ["node_modules/vite/bin/vite.js", "--port", "5179", "--strictPort"],
+      "port": 5179
+    },
+    {
+      "name": "us-stocks-preview",
+      "runtimeExecutable": "C:\\Users\\derek.huang\\AppData\\Local\\Programs\\nodejs\\node.exe",
+      "runtimeArgs": ["node_modules/vite/bin/vite.js", "preview", "--port", "4179", "--strictPort"],
+      "port": 4179
+    }
+  ]
+}

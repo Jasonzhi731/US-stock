@@ -1,0 +1,449 @@
+{
+  "$schema": "../../schema/stock-analysis.schema.json",
+  "schemaVersion": "1.0.0",
+  "meta": {
+    "analyst": "Claude Code (claude-opus-5-5)",
+    "dataAsOf": "2026-11-02",
+    "language": "zh-Hant",
+    "sources": [
+      { "id": "S1", "title": "Marvell Reports Second Quarter of Fiscal Year 2027 Financial Results (8-K Ex.99.1)", "publisher": "SEC EDGAR", "url": "https://www.sec.gov/Archives/edgar/data/0001835632/000183563226000022/q227_8kx812026ex-991.htm", "date": "2026-08-27" },
+      { "id": "S2", "title": "Marvell Reports First Quarter of Fiscal Year 2027 Financial Results (8-K Ex.99.1)", "publisher": "SEC EDGAR", "url": "https://www.sec.gov/Archives/edgar/data/0001835632/000183563226000014/q127_8kx522026ex-991.htm", "date": null },
+      { "id": "S3", "title": "Marvell Reports Fourth Quarter and Fiscal Year 2026 Financial Results (8-K Ex.99.1)", "publisher": "SEC EDGAR", "url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000006/q426_8kx1312026ex-991.htm", "date": "2026-03-05" },
+      { "id": "S4", "title": "Marvell Reports Third Quarter of Fiscal Year 2026 Financial Results (8-K Ex.99.1)", "publisher": "SEC EDGAR", "url": "https://sec.gov/Archives/edgar/data/1835632/000183563225000193/q326_8kx1112025ex-991.htm", "date": "2025-12-02" },
+      { "id": "S5", "title": "Marvell Technology Q2 FY2027 Earnings Call Transcript", "publisher": "Benzinga via Webull", "url": "https://www.webull.ca/news-detail/15476996240524288", "date": "2026-08-27" },
+      { "id": "S6", "title": "Marvell raises 2028 revenue forecast on strong AI data center demand (Investor Day)", "publisher": "Reuters via KSL", "url": "https://www.ksl.com/article/51632987/marvell-raises-2028-revenue-forecast-on-strong-ai-data-center-demand", "date": "2026-10-06" },
+      { "id": "S7", "title": "Marvell + Lumentum Investor Presentation (8-K Ex.99.2)", "publisher": "SEC EDGAR", "url": "https://www.sec.gov/Archives/edgar/data/0001633978/000119312526442758/d163169dex992.htm", "date": "2026-11-02" },
+      { "id": "S8", "title": "Lumentum Form 425：Merger Agreement 主要條款（換股比例、Outside Date、分手費）", "publisher": "SEC EDGAR", "url": "https://www.sec.gov/Archives/edgar/data/0001633978/000119312526442760/d163169d425.htm", "date": "2026-11-02" },
+      { "id": "S9", "title": "Marvell to buy Lumentum in all-stock deal", "publisher": "CNBC", "url": "https://www.cnbc.com/2026/11/02/marvell-lumentum-ai-deal.html", "date": "2026-11-02" },
+      { "id": "S10", "title": "Marvell to buy Lumentum in $115-billion deal in AI data-centre bet", "publisher": "The Globe and Mail", "url": "https://www.theglobeandmail.com/business/article-marvell-to-buy-lumentum-in-115-billion-deal-in-ai-data-centre-bet/", "date": "2026-11-02" },
+      { "id": "S11", "title": "MRVL Stock Forecast & Analyst Price Targets（S&P Global 彙整）", "publisher": "StockAnalysis.com", "url": "https://stockanalysis.com/stocks/mrvl/forecast/", "date": "2026-11-02" },
+      { "id": "S12", "title": "MRVL Overview：IV30、Put/Call 成交量、52 週區間、Beta", "publisher": "Market Chameleon", "url": "https://marketchameleon.com/Overview/MRVL/", "date": "2026-11-02" },
+      { "id": "S13", "title": "MRVL Option Chain（各到期日 Open Interest，用於自算 Max Pain／Gamma）", "publisher": "Nasdaq", "url": "https://www.nasdaq.com/market-activity/stocks/mrvl/option-chain", "date": "2026-11-02" },
+      { "id": "S14", "title": "MRVL／SPY／QQQ／SMH／AVGO／LITE 日線歷史價格（自算 SMA、RSI、MACD、AVWAP、相對強弱）", "publisher": "Yahoo Finance", "url": "https://finance.yahoo.com/quote/MRVL/history/", "date": "2026-11-02" },
+      { "id": "S15", "title": "Marvell hands Google a $12.2bn share option in a custom-chip deal", "publisher": "The Next Web (Reuters/Bloomberg)", "url": "https://thenextweb.com/news/marvell-google-12-2bn-warrant-custom-chip-deal", "date": "2026-08-19" },
+      { "id": "S16", "title": "MRVL Short Interest（Nasdaq 半月結算資料）", "publisher": "Nasdaq", "url": "https://www.nasdaq.com/market-activity/stocks/mrvl/short-interest", "date": "2026-10-15" },
+      { "id": "S17", "title": "MRVL Institutional Ownership（13F 彙整）", "publisher": "InsiderSet", "url": "https://www.insiderset.com/stocks/MRVL/institutional-ownership", "date": "2026-06-30" },
+      { "id": "S18", "title": "Marvell Form 4 filings（內部人交易）", "publisher": "SEC EDGAR", "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001835632&type=4&dateb=&owner=include&count=40", "date": null },
+      { "id": "S19", "title": "MRVL Closed Down 10.05% on Oct 30（Raymond James 稀釋估計）", "publisher": "TradingKey", "url": "https://www.tradingkey.com/news/market-movers/262262107-market-movers-mrvl-20261030", "date": "2026-10-30" },
+      { "id": "S20", "title": "Marvell tops Q2 estimates but shares slip（FactSet 共識 EPS $0.93）", "publisher": "AskTraders", "url": "https://www.asktraders.com/analysis/marvell-tops-q2-estimates-but-shares-slip-post-market/", "date": "2026-08-27" }
+    ],
+    "dataQualityNotes": [
+      "技術指標（20/50/200 SMA、RSI14、MACD 12/26/9、Anchored VWAP）與相對強弱報酬率，皆以 Yahoo Finance 日線收盤價自行計算（S14），截至 2026-11-02 收盤。",
+      "Max Pain、Put/Call Ratio（OI）、Gamma Flip 依 Nasdaq 各到期日 Open Interest（2026-11-06 至 2027-01-15 共 8 個到期日）自行計算；Gamma 曝險假設單一 IV 75%（≈ IV30），僅供判讀結構，非精確造市商部位。",
+      "空單比例以 Nasdaq 2026-10-15 結算之 2,459 萬股 ÷ 約 9.0 億股流通股估算；10/29 後併購消息造成的空單變化需待 10/30 結算資料（約 11/10 公布）。",
+      "華爾街共識目標價（S11）多數訂於 Lumentum 併購案前，尚未反映稀釋與監管風險，預期接下來 1–2 週將出現下修潮；與我方 base 的預期差需以此脈絡解讀。",
+      "Q2 FY27 營收市場共識各家資料略有差異（$2.71B–$2.72B），此處取 $2.721B；Q3 FY27 指引公布前的市場共識未取得可靠數字，標示為 null。",
+      "ROIC／ROE 為我方以 non-GAAP 數字估算（含商譽），GAAP 數字受 Celestial AI 併購攤提與 FY26 汽車乙太網路出售利得扭曲，不具可比性。",
+      "Marvell 會計年度於 1 月底結束：FY2027 = 2026/2–2027/1，FY2028 = 2027/2–2028/1；文中 CY 代表日曆年。"
+    ]
+  },
+  "valuation": {
+    "ticker": "MRVL",
+    "exchange": "NASDAQ",
+    "name": "Marvell Technology, Inc.",
+    "nameZh": "邁威爾科技",
+    "sector": "Information Technology",
+    "industry": "Semiconductors",
+    "currency": "USD",
+    "currentPrice": 171.41,
+    "priceDate": "2026-11-02",
+    "sharesOutstandingM": 900,
+    "updatedAt": "2026-11-03T10:00:00+08:00",
+    "rating": "Buy",
+    "ratingRationale": "Lumentum 全股票併購消息讓股價在三個交易日內由 $251.65 重挫 32% 至 $171.41，對應 FY2028E Non-GAAP EPS 僅約 23.8x，已低於我們 30x 的基準倍數。AI 資料中心本業動能未變（Q3 指引資料中心 YoY 約 +75%、Investor Day 將 FY2028 營收目標上調至約 $20B），但新增約 33% 股權稀釋、交割延至 1H CY2028 與多國監管不確定性，會壓抑估值倍數 2–3 季，因此評等為 Buy 而非 Strong Buy；模型顯示 $158 以下進入便宜區，收復 200 SMA（約 $184）為技術面止跌確認訊號。",
+    "fiscalYearNote": "會計年度於 1 月底結束：FY2027 = 2026/2–2027/1，FY2028 = 2027/2–2028/1，FY2029 ≈ CY2028。",
+    "timeHorizonMonths": 12,
+    "scenarios": {
+      "bear": {
+        "targetPrice": 113,
+        "impliedUpsidePct": -34.1,
+        "probabilityPct": 25,
+        "method": "Forward P/E",
+        "basisPeriod": "FY2028E",
+        "metricName": "Non-GAAP EPS",
+        "metricValue": 5.4,
+        "targetMultiple": 21,
+        "formula": "FY2028E Non-GAAP EPS $5.40 × 21x = $113",
+        "thesis": "Custom XPU 量產時程遞延、Google 認股權證里程碑進度落後，FY2028 營收退回 8 月前的約 $16.5B 舊目標；Lumentum 監管審查拖長、套利賣壓與稀釋疑慮讓倍數壓縮至 2025 年 AI 半導體修正期的低檔。",
+        "keyAssumptions": [
+          "FY2028E 營收約 $16.5B（較管理層 ~$20B 目標低 17%）",
+          "Non-GAAP 營業利益率 36%（未達 38–40% 長期區間），稅率 13%",
+          "稀釋後股數約 9.25 億股，EPS 約 $5.40",
+          "目標 P/E 21x：併購 overhang + AI CapEx 循環疑慮下的低檔倍數"
+        ],
+        "dcf": null
+      },
+      "base": {
+        "targetPrice": 216,
+        "impliedUpsidePct": 26.0,
+        "probabilityPct": 50,
+        "method": "Forward P/E",
+        "basisPeriod": "FY2028E",
+        "metricName": "Non-GAAP EPS",
+        "metricValue": 7.2,
+        "targetMultiple": 30,
+        "formula": "FY2028E Non-GAAP EPS $7.20 × 30x = $216",
+        "thesis": "管理層 FY2028 約 $20B 營收目標大致兌現（custom 倍增以上、1.6T 光通訊 DSP 放量、scale-out 交換器倍增），營業利益率達 38–40% 區間上緣；倍數由併購前約 34x 打折至 30x 以反映稀釋與交割期的不確定性。",
+        "keyAssumptions": [
+          "FY2028E 營收約 $20.0B（與 Investor Day 目標一致，YoY 約 +67%）",
+          "Non-GAAP 營業利益率 39.5%、淨利息支出約 $0.2B、稅率 13%（管理層 FY28 指引）",
+          "稀釋後股數約 9.3 億股（含 Google 認股權證部分庫藏股法稀釋），EPS $7.20，略低於共識 $7.35",
+          "交叉檢查：FY2029E（≈CY2028）EPS 我方估 $11.0 × 19.6x ≈ $216；以 FY27→FY29 EPS CAGR 約 61% 計 PEG 約 0.5"
+        ],
+        "dcf": null
+      },
+      "bull": {
+        "targetPrice": 308,
+        "impliedUpsidePct": 79.7,
+        "probabilityPct": 25,
+        "method": "Forward P/E",
+        "basisPeriod": "FY2028E",
+        "metricName": "Non-GAAP EPS",
+        "metricValue": 8.1,
+        "targetMultiple": 38,
+        "formula": "FY2028E Non-GAAP EPS $8.10 × 38x = $308",
+        "thesis": "Google 擴大合作的 custom 營收提前認列、scale-up optics（Celestial AI photonic fabric）於 2027 年開始貢獻、1.6T 升級超預期，FY2028 營收達 $22B；市場開始以合併後 CY2030 $550B TAM 的光電互連平台重新定價。",
+        "keyAssumptions": [
+          "FY2028E 營收約 $22.0B（較目標高 10%）",
+          "Non-GAAP 營業利益率 40.5%，稅率 13%，EPS $8.10",
+          "目標 P/E 38x：回到 2026 年 6 月高點時期的估值區間（ATH 收盤 $316.43）",
+          "Lumentum 審查順利、綜效 $1B+ 能見度提高，市場改以合併 EPS 增厚評價"
+        ],
+        "dcf": null
+      }
+    },
+    "streetConsensus": {
+      "asOf": "2026-11-02",
+      "source": "StockAnalysis.com（S&P Global Market Intelligence 彙整）",
+      "analystCount": 44,
+      "lowTarget": 225,
+      "medianTarget": 335,
+      "meanTarget": 332.12,
+      "highTarget": 450,
+      "ratings": { "buy": 40, "hold": 4, "sell": 0 },
+      "consensusRating": "Strong Buy",
+      "notes": "Buy 含 Strong Buy 32 家 + Buy 8 家。多數目標價訂於 10/29 併購傳聞前（如 Piper Sandler $400、Stifel $370、Wolfe $375），BofA（Vivek Arya）已於 11/2 將評等降至 Neutral；我方 base $216 甚至低於華爾街最低目標價 $225，反映我們預期共識將下修。"
+    },
+    "priceZones": {
+      "basis": "FY2028E Non-GAAP EPS $7.20（我方 base 假設）",
+      "cheap": { "max": 158, "multiple": 22 },
+      "fair": { "low": 173, "high": 230, "multipleLow": 24, "multipleHigh": 32 },
+      "expensive": { "min": 259, "multiple": 36 },
+      "methodology": "以 FY2028E Non-GAAP EPS $7.20 乘上本益比帶：≤22x 為便宜區（也與 5 月低點 $157.96／7 月低點 $162.90 的技術支撐重疊），24–32x 為合理區（對應 FY27→FY30 EPS CAGR 約 45% 下 PEG 0.5–0.7），≥36x 為昂貴區（接近 2026 年 6 月泡沫化高點的倍數）。",
+      "forwardEPS": 7.2,
+      "targetPE": 30,
+      "expectedCAGRPct": 45,
+      "pegTarget": 0.67,
+      "sliderBounds": {
+        "eps": { "min": 4, "max": 11, "step": 0.05 },
+        "pe": { "min": 12, "max": 50, "step": 0.5 },
+        "cagr": { "min": 0, "max": 80, "step": 1 }
+      }
+    }
+  },
+  "fundamentals": {
+    "moatAndBusinessModel": {
+      "businessSummary": "Marvell 是專注於「資料基礎設施」的 Fabless 半導體公司，Q2 FY27 資料中心營收佔 79%。核心產品包括：為雲端巨頭共同設計的 Custom AI 加速器（XPU）與 XPU-attach（客製 NIC、儲存／記憶體控制器、近記憶體運算）、光通訊電子（800G／1.6T PAM4 DSP、Coherent DSP、TIA／Driver、ZR／ZR+ DCI 模組）、Ethernet 交換器（Teralynx 51.2T）與儲存控制器；其餘為電信基礎設施、企業網路與消費性產品。2025 年 8 月以 $2.5B 將汽車乙太網路業務售予 Infineon，2026 年 2 月完成 Celestial AI（photonic fabric 光互連）與 XConn（CXL／PCIe 交換）收購，並於 2026-11-02 宣布以全股票併購光學元件大廠 Lumentum。",
+      "moatRating": "Narrow",
+      "moatSources": [
+        { "type": "SwitchingCosts", "title": "多世代 Custom 共同設計綁定", "description": "Custom XPU 與 XPU-attach 需與雲端客戶從架構、SerDes、封裝到軟體共同開發，一個平台通常延續 2–3 個世代；Google 認股權證把 custom 營收里程碑與股權綁定至 FY2033，進一步提高轉換成本。" },
+        { "type": "TechnologyLeadership", "title": "高速 SerDes 與光通訊 DSP 領先", "description": "800G／1.6T PAM4 DSP 與 TIA／Driver 長期市佔領先，加上 2nm／3nm 先進製程 IP 組合與 51.2T 交換器，是少數能同時提供 compute、scale-up、scale-out、scale-across 互連的廠商。" },
+        { "type": "IntangibleAssets", "title": "IP 組合與光電整合版圖", "description": "收購 Inphi、Celestial AI、XConn 後累積大量光電與互連專利；若 Lumentum 合併完成，將取得 InP 雷射晶圓產能、EML／CW 雷射、OCS 光路交換器等元件，形成電＋光的垂直整合。" }
+      ],
+      "competitivePosition": "在 AI 資料中心互連與客製化晶片市場位居第二梯隊龍頭：Custom ASIC 規模僅次於 Broadcom，光通訊 DSP 與 Broadcom、Credo 三強競爭並保持領先，交換器則落後 Broadcom Tomahawk 與 Nvidia Spectrum-X。2026 年的關鍵變化是 Google 由 Broadcom 單一供應轉向擴大與 Marvell 合作（推論加速器、儲存控制器、NIC 等），以及透過 Lumentum 補齊光學元件，挑戰 Nvidia 在 scale-up／CPO 的垂直整合。",
+      "keyCompetitors": [
+        { "name": "Broadcom", "ticker": "AVGO", "overlap": "Custom XPU（Google TPU 主力夥伴，合約至 2031）、Tomahawk 交換器、光通訊 DSP" },
+        { "name": "NVIDIA", "ticker": "NVDA", "overlap": "NVLink／Spectrum-X 與 CPO 交換器的垂直整合方案；同時也是 NVLink Fusion 合作夥伴" },
+        { "name": "Alchip（世芯）／GUC（創意）", "ticker": null, "overlap": "台系 ASIC 設計服務，爭奪 AWS Trainium 等雲端 custom 訂單" },
+        { "name": "MediaTek（聯發科）", "ticker": null, "overlap": "Google TPU 衍生版本的 custom ASIC 合作" },
+        { "name": "Credo Technology", "ticker": "CRDO", "overlap": "PAM4 DSP、AEC 主動式電纜" },
+        { "name": "Astera Labs", "ticker": "ALAB", "overlap": "PCIe／CXL Retimer 與 UALink scale-up 交換" }
+      ],
+      "segmentMix": {
+        "period": "Q2 FY2027（截至 2026-08-01）",
+        "segments": [
+          { "name": "資料中心 Data Center", "revenueUSDm": 2171.5, "sharePct": 79.3, "yoyPct": 45.7, "qoqPct": 18.5, "commentary": "Custom XPU、光通訊 DSP、交換器與儲存；Q3 指引季增 >20%、YoY 約 +75%。" },
+          { "name": "通訊與其他 Communications & Other", "revenueUSDm": 567.8, "sharePct": 20.7, "yoyPct": 10.1, "qoqPct": -3.0, "commentary": "電信基礎設施、企業網路、消費性；Q3 預期季減 low-to-mid teens 後 Q4 回升。" }
+        ]
+      },
+      "productLines": [
+        { "name": "Custom XPU／XPU-attach", "segment": "資料中心", "description": "雲端客製 AI 加速器與周邊客製晶片（NIC、儲存與記憶體控制器、近記憶體運算）。管理層預期 FY2028 營收倍增以上，Investor Day 將 FY2029 custom 營收目標由 $10B 上調至約 $12B。", "momentum": "Accelerating" },
+        { "name": "光通訊 DSP 與 TIA／Driver", "segment": "資料中心", "description": "800G 需求強勁、1.6T 快速放量並於 FY2028 加速；Broadband analog（TIA／Driver）表現優於預期，已在年化 $1B 營收軌道上。", "momentum": "Growing" },
+        { "name": "Scale-out 交換器（Teralynx 51.2T）", "segment": "資料中心", "description": "51.2T 產品帶動今年營收倍增以上，為 AI 叢集後端網路的 Broadcom 替代方案。", "momentum": "Accelerating" },
+        { "name": "Scale-up 互連（Celestial AI／XConn）", "segment": "資料中心", "description": "支援 UALink、ESUN、NVLink Fusion 三種協定；scale-up optics 最早 2027 年開始部署，NPO 與 CPO 互補，是 FY2028 營收目標上調的重要來源。", "momentum": "Accelerating" },
+        { "name": "DCI（ZR／ZR+ scale-across）", "segment": "資料中心", "description": "跨資料中心互連模組與 Coherent DSP，受惠多園區 AI 叢集。", "momentum": "Growing" },
+        { "name": "電信與企業網路", "segment": "通訊與其他", "description": "5G 基地台、企業交換與消費性產品，週期性復甦但成長性低於資料中心。", "momentum": "Stable" }
+      ]
+    },
+    "earningsAndGuidance": {
+      "latestQuarter": {
+        "fiscalPeriod": "Q2 FY2027",
+        "periodEnd": "2026-08-01",
+        "reportDate": "2026-08-27",
+        "revenue": { "actualUSDm": 2739.3, "consensusUSDm": 2721, "guidanceMidUSDm": 2700, "yoyPct": 36.5, "qoqPct": 13.3, "result": "Beat" },
+        "nonGaapEps": { "actual": 0.94, "consensus": 0.93, "guidanceMid": 0.93, "yoyPct": 40.3, "result": "Beat" },
+        "grossMarginNonGaapPct": 58.9,
+        "operatingMarginNonGaapPct": 36.6,
+        "stockReactionPct": -10.3,
+        "highlights": [
+          "營收 $2.739B 創新高，YoY +37%、QoQ +13%，高於指引中值 $39M；資料中心 $2.172B，YoY +46%。",
+          "Non-GAAP EPS $0.94，僅優於 FactSet 共識 $0.93 一美分，低於 buy-side whisper $0.97，股價次日 −10.3%。",
+          "Non-GAAP 毛利率 58.9%、營業利益率 36.6%；GAAP EPS $0.33（SBC $326M 與無形資產攤提 $215M）。",
+          "營運現金流 $606M、資本支出 $127M，FCF $479M；回購 $200M、股利 $54M。"
+        ]
+      },
+      "guidance": {
+        "period": "Q3 FY2027",
+        "revenue": { "lowUSDm": 2992.5, "midUSDm": 3150, "highUSDm": 3307.5, "consensusBeforeUSDm": null, "yoyPct": 51.8 },
+        "nonGaapEps": { "low": 1.05, "mid": 1.1, "high": 1.15, "consensusBefore": null },
+        "grossMarginNonGaapPct": { "low": 57.5, "high": 58.5 },
+        "opexNonGaapUSDm": 655,
+        "vsConsensus": "NA",
+        "commentary": "營收中值 $3.15B（QoQ +15%、YoY +52%），資料中心季增 >20%、YoY 約 +75%；但毛利率指引降至 57.5–58.5%（custom 組合稀釋），通訊與其他季減 low-to-mid teens。市場關注點從營收轉向毛利率與長期目標，導致財報後股價下跌。"
+      },
+      "fullYearOutlook": [
+        { "period": "FY2027", "metric": "營收 Revenue", "value": "約 $12B（YoY 約 +45%）", "change": "Raised", "note": "Q2 財報上調，前次約 $11.5B。" },
+        { "period": "FY2028", "metric": "營收 Revenue", "value": "約 $20B", "change": "Raised", "note": "Investor Day（10/6）由 8 月的約 $18B 再上調，高於 LSEG 共識 $18.2B；2025 年 12 月時約 $13B。" },
+        { "period": "FY2028", "metric": "Non-GAAP 營業利益率", "value": "達 38–40% 長期區間上緣", "change": "Initiated", "note": "Q4 FY27 進入 38–40% 區間；FY28 opex 成長約為營收成長的一半。" },
+        { "period": "FY2028", "metric": "Non-GAAP 毛利率", "value": "與 FY27 末期相近（約 57.5–58.5%）", "change": "Initiated", "note": "Custom 比重上升使毛利率難以擴張。" },
+        { "period": "FY2029", "metric": "Custom 營收", "value": "約 $12B", "change": "Raised", "note": "Investor Day 由約 $10B 上調。" },
+        { "period": "FY2031", "metric": "營收 Revenue", "value": "$70B–$90B", "change": "Initiated", "note": "中值 $80B 遠高於 Visible Alpha 共識 $46.85B。" }
+      ],
+      "earningsCallTakeaways": [
+        "FY2027 營收展望上調至約 $12B（+45% YoY）、FY2028 上調至約 $18B（+50%），之後 Investor Day 再上調至約 $20B。",
+        "Custom 業務預計 FY2028 倍增以上、FY2029 顯著加速；與 Google 擴大合作相關的營收到 FY2028 已含在指引中，上行空間主要落在 FY2029 之後。",
+        "Q3 資料中心預計季增 >20%、YoY 約 +75%；通訊與其他季減 low-to-mid teens，Q4 回升。",
+        "毛利率受 custom 組合稀釋：Q3 指引 57.5–58.5%（Q2 為 58.9%），Q4 維持相近，FY2028 初步看法與 FY2027 末期相近。",
+        "Non-GAAP 營業利益率預計於 Q4 FY27 進入 38–40% 長期區間，FY2028 達區間上緣；FY27 non-GAAP opex 約 $2.55B。",
+        "800G 強勁、1.6T 快速放量；scale-out 交換器（51.2T）今年倍增以上；scale-up optics 最早明年部署，管理層強調 NPO 與 CPO「不是二選一」。",
+        "FY27 預計支付約 $1B 供應商產能預付款；總負債 $4.96B，淨負債／EBITDA 0.27x，持續回購以抵銷稀釋。",
+        "Non-GAAP 稅率 Q3 11%、FY2028 約 13%；分析師追問 Google 認股權證隱含的營收規模，管理層稱「算法沒錯」但留待 Investor Day 說明。"
+      ]
+    },
+    "financialMetrics": {
+      "unit": "USD M",
+      "quarterly": [
+        { "period": "Q3 FY26", "periodEnd": "2025-11-01", "isEstimate": false, "revenue": 2074.5, "revenueYoYPct": 36.8, "grossMarginNonGaapPct": 59.7, "operatingMarginNonGaapPct": 36.3, "nonGaapEps": 0.76, "operatingCashFlow": 582.3, "capex": 73.5, "fcf": 508.8, "fcfMarginPct": 24.5, "sbc": 152.1, "sbcPctOfRevenue": 7.3, "buybacks": 1300.0 },
+        { "period": "Q4 FY26", "periodEnd": "2026-01-31", "isEstimate": false, "revenue": 2218.7, "revenueYoYPct": 22.1, "grossMarginNonGaapPct": 59.0, "operatingMarginNonGaapPct": 35.7, "nonGaapEps": 0.80, "operatingCashFlow": 373.7, "capex": 114.3, "fcf": 259.4, "fcfMarginPct": 11.7, "sbc": 143.0, "sbcPctOfRevenue": 6.4, "buybacks": 200.1 },
+        { "period": "Q1 FY27", "periodEnd": "2026-05-02", "isEstimate": false, "revenue": 2417.8, "revenueYoYPct": 27.6, "grossMarginNonGaapPct": 58.9, "operatingMarginNonGaapPct": 35.0, "nonGaapEps": 0.80, "operatingCashFlow": 638.8, "capex": 155.7, "fcf": 483.1, "fcfMarginPct": 20.0, "sbc": 207.6, "sbcPctOfRevenue": 8.6, "buybacks": 200.0 },
+        { "period": "Q2 FY27", "periodEnd": "2026-08-01", "isEstimate": false, "revenue": 2739.3, "revenueYoYPct": 36.5, "grossMarginNonGaapPct": 58.9, "operatingMarginNonGaapPct": 36.6, "nonGaapEps": 0.94, "operatingCashFlow": 605.5, "capex": 126.7, "fcf": 478.8, "fcfMarginPct": 17.5, "sbc": 326.2, "sbcPctOfRevenue": 11.9, "buybacks": 200.0 },
+        { "period": "Q3 FY27E", "periodEnd": "2026-10-31", "isEstimate": true, "revenue": 3150, "revenueYoYPct": 51.8, "grossMarginNonGaapPct": 58.0, "operatingMarginNonGaapPct": 37.2, "nonGaapEps": 1.10, "operatingCashFlow": null, "capex": null, "fcf": null, "fcfMarginPct": null, "sbc": null, "sbcPctOfRevenue": null, "buybacks": null }
+      ],
+      "ttm": {
+        "period": "Q3 FY26–Q2 FY27",
+        "revenue": 9450.3,
+        "revenueYoYPct": 30.6,
+        "fcf": 1730.1,
+        "fcfMarginPct": 18.3,
+        "sbcPctOfRevenue": 8.8,
+        "buybacks": 1900.1,
+        "dividends": 209.7
+      },
+      "returns": {
+        "roicPct": 15.4,
+        "roePct": 15.9,
+        "basis": "我方估算：ROIC = TTM non-GAAP 營業利益 $3,395M ×（1−11% 稅率）÷ 投入資本 $19,562M（權益 $18,532M + 負債 $4,963M − 現金 $3,933M，含 $13.9B 商譽）；ROE = TTM non-GAAP 淨利約 $2.94B ÷ 期末權益。扣除商譽與無形資產的有形 ROIC 約 90%。"
+      },
+      "ruleOf40": {
+        "applicable": true,
+        "score": 54.8,
+        "basis": "Q2 FY27 營收 YoY 36.5% + TTM FCF Margin 18.3%（AI 半導體參考用；FCF 受 ~$1B 產能預付影響偏低）"
+      },
+      "balanceSheet": {
+        "asOf": "2026-08-01",
+        "cashUSDm": 3932.8,
+        "totalDebtUSDm": 4962.9,
+        "netCashUSDm": -1030.1,
+        "notes": "毛負債／EBITDA 1.32x、淨負債／EBITDA 0.27x；FY27 有約 $1B 供應商產能預付款。Lumentum 為全股票交易，不新增併購負債，但 Lumentum 本身的可轉債將併入。"
+      },
+      "capitalReturn": {
+        "buybackAuthorizationRemainingUSDm": null,
+        "dividendPerShareAnnual": 0.24,
+        "notes": "2025/9 宣布新增 $5B 回購授權並執行 $1B ASR（Q3 FY26 回購 $1.3B）；FY27 每季穩定回購 $200M 以抵銷 SBC 稀釋。剩餘授權額度公司未於財報揭露。"
+      },
+      "commentary": "營收成長由 FY26 Q4 的 +22%（受汽車乙太網路出售基期影響）一路加速到 Q3 FY27 指引的 +52%，但毛利率因 custom 比重上升由 59.7% 緩降至 58% 附近，成長主要靠營業槓桿（opex 成長慢於營收）放大獲利。須留意 SBC 在 Celestial AI 併購後升至營收 11.9%，以及 FCF Margin 受產能預付款壓抑至 17–20%，品質略遜於帳面 non-GAAP 獲利。"
+    },
+    "growthDrivers": [
+      { "title": "Custom AI XPU 與 XPU-attach 放量", "description": "FY2028 custom 營收預計倍增以上，FY2029 目標約 $12B；Google 擴大合作涵蓋推論加速器、儲存控制器、NIC、記憶體介面與近記憶體運算，認股權證每 $5 億 custom 營收解鎖一批，理論上至 FY2033 可帶來約 $1,200 億營收。", "timeframe": "FY27 下半年起，FY28–FY29 加速", "magnitude": "High" },
+      { "title": "1.6T 光通訊 DSP 世代升級", "description": "800G 需求強勁、1.6T 快速放量並於 FY2028 加速，Marvell 在 PAM4 DSP 與 TIA／Driver 市佔領先，單位價值隨速率倍增。", "timeframe": "FY27–FY29", "magnitude": "High" },
+      { "title": "Scale-up 互連與光學（Celestial AI／XConn）", "description": "支援 UALink、ESUN、NVLink Fusion；客戶計畫最早 2027 年部署 scale-up optics，管理層稱這是 FY2028 營收上調 $1.5B 的重要來源。", "timeframe": "CY2027 起", "magnitude": "Medium" },
+      { "title": "Scale-out 交換器替代 Broadcom", "description": "Teralynx 51.2T 帶動交換器營收今年倍增以上，下一代 102.4T 是延續成長的關鍵。", "timeframe": "FY27–FY28", "magnitude": "Medium" },
+      { "title": "Lumentum 合併後的光電整合與綜效", "description": "取得 InP 雷射產能、EML／CW 雷射、OCS 光路交換器與 CPO light engine，合併後年化營收約 $17.7B、CY2030 TAM $550B，管理層指出 $1B+ run-rate 成本綜效（以 COGS 為主）且交割後第一年即增厚 EPS。", "timeframe": "1H CY2028 交割後", "magnitude": "Medium" },
+      { "title": "營業槓桿", "description": "Non-GAAP 營業利益率預計由 Q2 的 36.6% 擴張至 FY2028 的 40% 附近，FY28 opex 成長約為營收的一半，EPS 成長快於營收。", "timeframe": "Q4 FY27–FY28", "magnitude": "Medium" }
+    ],
+    "secRisks": [
+      { "title": "Lumentum 併購執行、稀釋與監管", "description": "每股 Lumentum 換 4.5 股 MRVL，合併後原股東僅持有約 67%；需雙方股東會、美國 HSR 與其他司法管轄區（市場關注中國）核准，預計 1H CY2028 才交割。若因監管終止須支付 $3.2B，若董事會撤回建議須付 $5.8B。Raymond James 估短期 EPS 稀釋可能超過 10%。", "source": "8-K／Form 425 合併協議", "severity": "High", "mitigation": "管理層指出 $1B+ 成本綜效與交割後第一年增厚 non-GAAP EPS；固定換股比例下若 MRVL 股價回升，交易價值同步上升。" },
+      { "title": "客戶集中度", "description": "資料中心營收高度集中於少數雲端巨頭的 custom 專案，單一客戶世代更替或轉單（例如 AWS 次世代 Trainium 改由台系設計服務承接）即可大幅影響營收。", "source": "10-K Risk Factors", "severity": "High", "mitigation": "客戶由 AWS、Microsoft 擴展至 Google 等多家，並以認股權證強化 Google 合作的長期綁定。" },
+      { "title": "產業競爭與定價壓力", "description": "Broadcom 與 Google 簽約至 2031、台系 ASIC 設計服務商以低價搶單，Nvidia 以 NVLink／CPO 垂直整合，Credo、Astera Labs 在互連領域競爭，可能壓縮 custom 與 DSP 毛利。", "source": "產業競爭", "severity": "High", "mitigation": "全端互連 IP（SerDes、DSP、交換器、光學）與先進製程能力形成差異化。" },
+      { "title": "Custom 組合拉低毛利率", "description": "Q3 FY27 non-GAAP 毛利率指引降至 57.5–58.5%，FY2028 預期與 FY27 末期相近；Lumentum 毛利率約 53%，合併後組合毛利約 57%（未計綜效）。", "source": "8-K 財測／投資人簡報", "severity": "Medium", "mitigation": "營業槓桿與 COGS 綜效抵銷，營業利益率目標仍上看 40%。" },
+      { "title": "AI CapEx 循環與高 Beta", "description": "Beta 約 2.19，股價對雲端資本支出預期極度敏感；2026 年內曾由 $70.69 漲至 $329.88 再回落至 $171，波動劇烈。", "source": "市場風險", "severity": "Medium", "mitigation": "Google 認股權證與多年 custom 合約提供部分營收能見度。" },
+      { "title": "供應鏈集中與地緣政治", "description": "先進製程與 CoWoS 封裝高度依賴台積電，且需約 $1B 產能預付；美中出口管制可能影響中國營收與併購審查。", "source": "10-K Risk Factors", "severity": "Medium", "mitigation": "預付款鎖定產能；Lumentum 帶來自有 InP 雷射晶圓廠。" },
+      { "title": "SBC 與股權稀釋", "description": "Q2 FY27 SBC $326M（營收 11.9%），Celestial AI 併購後明顯上升；Google 認股權證最多 5,897 萬股（履約價 $206.58），加上 Lumentum 約 4.4 億股新股。", "source": "10-Q／8-K", "severity": "Medium", "mitigation": "每季 $200M 回購部分抵銷。" }
+    ]
+  },
+  "technicals": {
+    "asOf": "2026-11-02",
+    "priceRange52w": { "high": 329.88, "highDate": "2026-06-18", "low": 70.69, "lowDate": "2026-02-05" },
+    "trendSummary": {
+      "shortTerm": { "direction": "Bearish", "comment": "三個交易日由 $251.65 重挫 32%，一舉跌破 20／50／200 SMA；RSI14 28.8 進入超賣、11/2 成交量 6,126 萬股為 50 日均量 2.8 倍，呈投降式賣壓，短線有技術性反彈條件，但結構已被破壞。" },
+      "mediumTerm": { "direction": "Bearish", "comment": "跌破 6 月以來 $190–$300 寬幅區間下緣，20 SMA（$243.0）與 50 SMA（$241.3）黏合即將死亡交叉；需重新站回 $196–$203（10/30 收盤缺口與 YTD AVWAP）才能扭轉中期空頭。" },
+      "longTerm": { "direction": "Bullish", "comment": "200 SMA $183.65 仍在上揚，股價自 2/5 低點 $70.69 仍上漲 142%、YTD +102%，長線多頭趨勢尚未逆轉；但已收在 200 SMA 下方，若 2–3 週內無法收復，長線趨勢將轉為中性。" },
+      "movingAverages": {
+        "sma20": 243.0,
+        "sma50": 241.3,
+        "sma200": 183.65,
+        "vwap": { "value": 202.82, "anchor": "2026 YTD Anchored VWAP（年初起算）" }
+      },
+      "summary": "事件驅動的斷崖式下跌：股價同時跌破所有關鍵均線與今年以來的成本線（YTD AVWAP $202.82），10/29 併購傳聞起算的 AVWAP 為 $195.58，代表事件後進場者全數套牢。短線超賣與負 Gamma 結構可能帶來劇烈反彈，但需收復 200 SMA（$184）才算止跌，$196–$203 是第一道壓力。"
+    },
+    "relativeStrength": {
+      "stockReturns": { "m1": -37.0, "m3": -11.5, "ytd": 101.7, "y1": 82.9 },
+      "benchmarks": [
+        { "symbol": "SPY", "name": "S&P 500 ETF", "role": "Market", "returns": { "m1": -2.3, "m3": -0.7, "ytd": 10.3, "y1": 10.3 } },
+        { "symbol": "QQQ", "name": "Nasdaq-100 ETF", "role": "Growth", "returns": { "m1": -9.1, "m3": -2.7, "ytd": 10.9, "y1": 8.3 } },
+        { "symbol": "SMH", "name": "VanEck 半導體 ETF", "role": "Sector", "returns": { "m1": -19.4, "m3": -6.8, "ytd": 41.1, "y1": 40.0 } },
+        { "symbol": "AVGO", "name": "Broadcom", "role": "Peer", "returns": { "m1": -9.3, "m3": -17.8, "ytd": -6.9, "y1": -12.8 } },
+        { "symbol": "LITE", "name": "Lumentum（併購標的）", "role": "Peer", "returns": { "m1": -36.9, "m3": -12.2, "ytd": 85.7, "y1": 239.6 } }
+      ],
+      "commentary": "YTD 仍大幅跑贏 SPY（+91 個百分點）與 SMH（+61 個百分點），但近 1 個月落後 SMH 達 18 個百分點、落後 QQQ 28 個百分點，相對強弱由領漲轉為領跌。10 月半導體類股本身也在修正（SMH 1M −19%），MRVL 的超額跌幅幾乎全部來自 Lumentum 事件。"
+    },
+    "keyLevels": [
+      { "type": "MajorResistance", "price": 245, "rangeLow": 241, "rangeHigh": 252, "significance": "20 SMA $243.0 與 50 SMA $241.3 叢集，加上 10/28 併購傳聞前收盤 $251.65 的跳空缺口上緣；回到此區代表事件衝擊完全修復。" },
+      { "type": "SecondaryResistance", "price": 200, "rangeLow": 195.6, "rangeHigh": 202.8, "significance": "10/30 收盤 $196.40、10/29 起算 AVWAP $195.58、YTD AVWAP $202.82 三線交會；同時是最大 Put OI（$200，合計 3.8 萬口）與 12/18 Max Pain 所在，為短線多空分水嶺。" },
+      { "type": "Pivot", "price": 184, "rangeLow": 183.6, "rangeHigh": 190.2, "significance": "200 SMA $183.65 至 10/30 盤中低點 $190.15；收盤站回 200 SMA 是止跌的第一個確認訊號。" },
+      { "type": "SecondarySupport", "price": 168.5, "rangeLow": 168.5, "rangeHigh": 171, "significance": "11/2 盤中低點 $168.52（爆量長下影），Put OI 集中於 $170／$175 履約價。" },
+      { "type": "StrongSupport", "price": 160, "rangeLow": 158, "rangeHigh": 163, "significance": "5 月低點 $157.96 與 7 月低點 $162.90 構成的前波底部，$160 亦有 2.1 萬口 Put OI；對應 FY2028E 22x 的便宜價上限 $158。" }
+    ],
+    "marketStructureAndFlow": {
+      "momentum": {
+        "rsi14": 28.8,
+        "rsiState": "Oversold",
+        "macd": { "line": -12.25, "signal": -4.9, "histogram": -7.36, "state": "Bearish" },
+        "avgVolume50dM": 22.0,
+        "volumeComment": "10/29–11/2 三日成交量合計 1.465 億股（42.0M／43.2M／61.3M），為 50 日均量 2.2–2.8 倍；11/2 收在當日低檔附近（高 $192.31、低 $168.52、收 $171.41），尚未出現明確的反轉 K 線。"
+      },
+      "institutional": {
+        "asOfQuarter": "2Q CY2026 13F（截至 2026-06-30）",
+        "ownershipPct": null,
+        "holdersCount": 2164,
+        "summary": "2Q26 共 2,164 家機構申報持有，持股市值約 $1,981 億；6/22 納入 S&P 500 帶動被動型基金大幅增持（State Street +79%）。3Q26 13F（11/16 前申報）將反映 Investor Day 前後的部位，主動型基金對 Lumentum 案的反應要到 4Q26 13F（2027/2 中旬）才看得到。",
+        "notableHolders": [
+          { "holder": "BlackRock", "action": "Holding", "detail": "持股市值約 $255 億，最大機構股東" },
+          { "holder": "Vanguard", "action": "Holding", "detail": "持股市值約 $173 億" },
+          { "holder": "FMR（Fidelity）", "action": "Holding", "detail": "持股市值約 $170 億，主動型最大持有人" },
+          { "holder": "State Street", "action": "Increased", "detail": "2Q26 增持約 1,850 萬股（+79.3%），與納入 S&P 500 相關" },
+          { "holder": "Alphabet（Google）", "action": "New", "detail": "非 13F 持股：8/19 揭露之認股權證，最多 5,897 萬股 @ $206.58（完全行使約 7%），依 custom 營收里程碑分批解鎖" }
+        ]
+      },
+      "insider": {
+        "period": "2026-03 至 2026-10",
+        "netActivity": "NetSell",
+        "summary": "CEO Matt Murphy 依 2025/12/16 採用的 10b5-1 計畫每月出售約 7,500 股，屬例行計畫性減持，相對其約 78 萬股直接持股規模有限；10/15 的交易為選擇權行使後代扣稅股，非公開市場賣出。本次查證未發現內部人公開市場買進。",
+        "transactions": [
+          { "date": "2026-10-15", "insider": "Matthew Murphy", "role": "Chairman & CEO", "type": "TaxWithholding", "shares": null, "price": 241.24, "valueUSD": null, "plan10b51": null },
+          { "date": "2026-09-15", "insider": "Matthew Murphy", "role": "Chairman & CEO", "type": "Sell", "shares": 7500, "price": 223.39, "valueUSD": 1675425, "plan10b51": true },
+          { "date": "2026-08-17", "insider": "Matthew Murphy", "role": "Chairman & CEO", "type": "Sell", "shares": 7500, "price": 236.08, "valueUSD": 1770600, "plan10b51": true },
+          { "date": "2026-06-15", "insider": "Matthew Murphy", "role": "Chairman & CEO", "type": "Sell", "shares": 7500, "price": 298.76, "valueUSD": 2240700, "plan10b51": true },
+          { "date": "2026-03-26", "insider": "Matthew Murphy", "role": "Chairman & CEO", "type": "Sell", "shares": 30000, "price": 98.7, "valueUSD": 2961000, "plan10b51": null }
+        ]
+      },
+      "shortInterest": {
+        "asOf": "2026-10-15",
+        "sharesShortM": 24.59,
+        "pctOfFloat": 2.7,
+        "daysToCover": 1.08,
+        "trend": "Falling",
+        "comment": "空單由 8/31 的 3,818 萬股降至 10/15 的 2,459 萬股（−36%），Days to Cover 僅 1.1 天，事件前空頭部位偏輕，因此這波下跌主要是多頭出場而非空頭進攻。併購後可能出現「做空 MRVL／做多 LITE」的併購套利部位，10/30 結算資料（約 11/10 公布）需重點追蹤。"
+      },
+      "options": {
+        "asOf": "2026-11-02",
+        "putCallRatioOI": 1.29,
+        "putCallRatioVolume": 1.04,
+        "iv30Pct": 75.3,
+        "maxPain": [
+          { "expiry": "2026-11-06", "price": 210 },
+          { "expiry": "2026-11-20", "price": 230 },
+          { "expiry": "2026-12-18", "price": 200 },
+          { "expiry": "2027-01-15", "price": 190 }
+        ],
+        "gammaLevels": [
+          { "price": 250, "type": "CallWall", "note": "合計 Call OI 2.4 萬口；更上方 $270（2.7 萬）與 $300（3.2 萬）多為 11/20 月選的舊多頭部位" },
+          { "price": 222, "type": "GammaFlip", "note": "估算淨 Gamma 由負轉正的價位，股價須回到此上方波動才會收斂" },
+          { "price": 200, "type": "PutWall", "note": "合計 Put OI 3.8 萬口最大，put gamma 最集中" },
+          { "price": 175, "type": "PutWall", "note": "11/20 到期 Put OI 1.47 萬口，與 $170（2.1 萬）形成近端支撐" }
+        ],
+        "netGammaRegime": "Negative",
+        "comment": "股價遠低於 11/20 Max Pain $230 與 Gamma Flip 約 $222，處於負 Gamma 區（估算每 1% 波動淨 Gamma 約 −$6,100 萬），造市商避險會放大漲跌；IV30 75% 隱含單月約 ±21% 波動。12/18（財報後首個月選）Max Pain $200 與最大 Put OI 重疊，若財報後站回 $200，可能觸發 put 平倉與 gamma 回補的快速反彈。"
+      }
+    }
+  },
+  "newsAndCatalysts": {
+    "recentNews": [
+      { "date": "2026-11-02", "headline": "Marvell 宣布以全股票併購 Lumentum，隱含企業價值 $1,150 億", "type": "M&A", "impact": "Bearish", "summary": "每股 Lumentum 換 4.5 股 MRVL（較 10/28 未受影響價溢價 23.9%），合併後 Marvell 原股東持股約 67%；兩家董事會一致通過，Murphy 續任董事長兼 CEO，Lumentum CEO Michael Hurlston 等三人加入董事會，預計 1H CY2028 交割。MRVL 當日 −12.7% 至 $171.41，LITE −19%。", "fundamentalImpact": "補齊雷射、EML／CW 雷射、OCS 光路交換器與 CPO light engine，打造「電＋光」全端互連平台（合併年化營收約 $17.7B、CY2030 TAM $550B），並有 $1B+ run-rate 成本綜效；但新增約 4.4 億股、Lumentum 53% 毛利率拉低組合，且交割前 18 個月的監管與套利 overhang 會壓抑估值。", "sourceIds": ["S7", "S8", "S9", "S10"] },
+      { "date": "2026-11-02", "headline": "BofA 將 Marvell 評等由 Buy 降至 Neutral", "type": "AnalystAction", "impact": "Bearish", "summary": "Vivek Arya 於併購宣布當日下調評等，為首家因 Lumentum 案降評的大型券商。", "fundamentalImpact": "象徵 sell-side 開始重估稀釋與執行風險；目前共識目標價中位數 $335 多數尚未更新，後續可能出現連鎖下修。", "sourceIds": ["S11"] },
+      { "date": "2026-10-29", "headline": "媒體報導 Marvell 與 Lumentum 進行收購談判，股價兩日重挫 22%", "type": "News", "impact": "Bearish", "summary": "10/29 −13.2%、10/30 −10.0%，由 $251.65 跌至 $196.40；市場對交易規模與全股票支付的稀釋效果反應激烈。", "fundamentalImpact": "Raymond James 估短期 EPS 稀釋可能超過 10%；技術面同步跌破 20／50 SMA。", "sourceIds": ["S19", "S14"] },
+      { "date": "2026-10-06", "headline": "Investor Day：FY2028 營收目標上調至約 $20B，FY2031 目標 $70–90B", "type": "Product", "impact": "Bullish", "summary": "FY2028 目標高於 LSEG 共識 $18.2B，FY2031 中值 $80B 遠高於 Visible Alpha 共識 $46.85B，FY2029 custom 營收目標由 $10B 上調至約 $12B；CEO 受訪稱資料中心營收 2028 年可能超過 $300 億。當日股價 +5.8%。", "fundamentalImpact": "大幅提高中長期營收能見度，是我方 FY2028E EPS $7.20 的主要依據；但長期目標高度依賴 custom 專案執行與雲端 CapEx 延續。", "sourceIds": ["S6"] },
+      { "date": "2026-08-27", "headline": "Q2 FY27 財報小幅優於預期，Q3 指引 $3.15B 但毛利率下滑", "type": "EarningsCall", "impact": "Neutral", "summary": "營收 $2.739B（+37%）、EPS $0.94 均僅小幅優於共識；FY27 營收展望上調至約 $12B、FY28 約 $18B，但 Q3 毛利率指引 57.5–58.5% 低於 Q2。次日股價 −10.3%。", "fundamentalImpact": "營收加速確立，但 custom 組合稀釋毛利率，市場對高預期的容忍度降低。", "sourceIds": ["S1", "S5", "S20"] },
+      { "date": "2026-08-19", "headline": "Marvell 授予 Google 認股權證，擴大 custom 晶片合作", "type": "8-K", "impact": "Bullish", "summary": "Google 可依 custom 營收里程碑（每 $5 億營收解鎖一批，至 FY2033）以 $206.58 認購最多 5,897 萬股（約 $122 億、約 7% 股權）；涵蓋推論加速器、儲存控制器、NIC、記憶體介面與近記憶體運算。8/19–8/20 股價合計 +16%。", "fundamentalImpact": "若里程碑全數達成，隱含約 $1,200 億 custom 營收，打破 Broadcom 在 Google 的獨家地位；代價是潛在約 6–7% 股權稀釋。", "sourceIds": ["S15"] },
+      { "date": "2026-06-22", "headline": "Marvell 正式納入 S&P 500 指數", "type": "Index", "impact": "Bullish", "summary": "6/22 開盤前生效，被動型基金大幅買進；股價於 6/18 創下 $329.88 盤中歷史高點。", "fundamentalImpact": "擴大股東基礎與流動性，對基本面無直接影響，但也使股價更受指數資金流動影響。", "sourceIds": ["S17", "S14"] },
+      { "date": "2026-02-02", "headline": "完成 Celestial AI 收購（2/10 完成 XConn）", "type": "M&A", "impact": "Neutral", "summary": "取得 photonic fabric 光互連與 CXL／PCIe 交換技術，納入 FY27 財測；SBC 與無形資產攤提隨之上升。", "fundamentalImpact": "強化 scale-up 互連布局，是 FY2028 scale-up optics 營收的基礎。", "sourceIds": ["S2", "S3"] }
+    ],
+    "catalystTimeline": [
+      { "date": "2026-12-01", "dateConfirmed": false, "window": "FQ3 FY27 財報／2026-12 上旬（預估，去年為 12/2）", "event": "Q3 FY2027 財報與 Q4 指引", "category": "Earnings", "expectedImpact": "Binary", "importance": "High", "description": "指引中值營收 $3.15B、EPS $1.10。關鍵在 Q4 營收指引能否達 $3.6B 以上、毛利率是否守住 57.5%，以及管理層是否在併購後重申 FY2028 約 $20B 目標並說明合併 EPS 增厚路徑。IV30 75% 隱含財報波動可能超過 ±15%。" },
+      { "date": "2026-12-01", "dateConfirmed": false, "window": "2026-11-30 至 12-04 前後（預估）", "event": "AWS re:Invent 2026", "category": "Conference", "expectedImpact": "Neutral", "importance": "Medium", "description": "觀察 Trainium 次世代進度與 custom 供應鏈分工；若 AWS 明確擴大與 Marvell 合作屬利多，轉向台系設計服務則為利空。" },
+      { "date": "2026-12-09", "dateConfirmed": true, "window": "FOMC 12/8–12/9", "event": "FOMC 利率決議與點陣圖", "category": "Macro", "expectedImpact": "Neutral", "importance": "Medium", "description": "高 Beta（2.19）成長股對利率路徑敏感，鴿派有利估值修復。" },
+      { "date": "2027-01-28", "dateConfirmed": false, "window": "2027-01 下旬至 02 上旬（預估）", "event": "雲端巨頭 4Q26 財報與 2027 CapEx 指引（MSFT、META、GOOGL、AMZN）", "category": "CustomerCapEx", "expectedImpact": "Binary", "importance": "High", "description": "2027 年 AI 資本支出成長幅度直接決定 custom XPU 與光通訊的需求天花板，是 FY2028 $20B 目標的最大外部變數。" },
+      { "date": "2027-02-16", "dateConfirmed": false, "window": "4Q26 13F 申報截止（預估）", "event": "機構 4Q26 13F 揭露", "category": "Corporate", "expectedImpact": "Neutral", "importance": "Low", "description": "首度看到主動型基金對 Lumentum 案的實際加減碼，以及併購套利基金部位。" },
+      { "date": "2027-03-04", "dateConfirmed": false, "window": "FQ4 FY27 財報／2027-03 上旬（預估）", "event": "Q4 FY2027 財報與 FY2028 全年展望", "category": "Earnings", "expectedImpact": "Binary", "importance": "High", "description": "FY2027 收官（目標約 $12B）與 FY2028 指引，營業利益率是否進入 38–40% 區間。" },
+      { "date": "2027-03-16", "dateConfirmed": false, "window": "2027-03 中旬（預估）", "event": "NVIDIA GTC 2027", "category": "Conference", "expectedImpact": "Neutral", "importance": "Medium", "description": "NVLink Fusion、CPO 交換器與 scale-up 光學路線圖，影響 Marvell／Lumentum 合併後的定位。" },
+      { "date": "2027-04-15", "dateConfirmed": false, "window": "2027 上半年（預估）", "event": "Lumentum 併購：S-4 生效、雙方股東會表決與 HSR 審查", "category": "Regulatory", "expectedImpact": "Binary", "importance": "High", "description": "股東會若出現反對聲浪或監管要求補件，將延長 overhang；順利通過則有助於估值修復。" },
+      { "date": "2027-05-27", "dateConfirmed": false, "window": "FQ1 FY28 財報／2027-05 下旬（預估）", "event": "Q1 FY2028 財報", "category": "Earnings", "expectedImpact": "Binary", "importance": "Medium", "description": "Custom 倍增與 scale-up optics 是否如期開始貢獻。" },
+      { "date": "2027-11-01", "dateConfirmed": true, "window": "合併協議 Outside Date", "event": "Lumentum 併購外部截止日", "category": "Regulatory", "expectedImpact": "Binary", "importance": "Medium", "description": "合併協議原定截止日，可因監管因素延長至 2028/2/1、5/1、8/1；監管失敗終止須付 $3.2B 分手費。" }
+    ],
+    "sentimentScore": {
+      "score": 51,
+      "label": "中性（基本面強、事件面弱）",
+      "components": [
+        { "factor": "基本面動能", "score": 80, "weightPct": 30, "comment": "Q3 指引 YoY +52%、資料中心 +75%，FY2028 營收目標約 $20B" },
+        { "factor": "估值吸引力", "score": 68, "weightPct": 20, "comment": "FY2028E P/E 約 23.8x，低於我方 30x 基準，PEG 約 0.5" },
+        { "factor": "技術面", "score": 18, "weightPct": 15, "comment": "跌破 200 SMA、MACD 空方擴大，僅 RSI 超賣提供反彈條件" },
+        { "factor": "籌碼與衍生品", "score": 30, "weightPct": 15, "comment": "負 Gamma、Put/Call OI 1.29、內部人計畫性賣出；空單偏低是少數正面" },
+        { "factor": "消息與事件風險", "score": 32, "weightPct": 20, "comment": "Lumentum 稀釋、BofA 降評、共識目標價待下修" }
+      ],
+      "bullCase": [
+        "本業加速未變：Q3 指引資料中心 YoY 約 +75%，FY2027 約 $12B → FY2028 約 $20B（+67%），custom FY2028 倍增以上，FY2028E EPS 共識 $7.35（+74%）。",
+        "估值已重置：$171 對應 FY2028E 約 24x、FY2029E 約 15.6x（我方 EPS $11.0），且跌破 Google 認股權證履約價 $206.58。",
+        "Lumentum 合併後成為唯一同時擁有 DSP／SerDes／交換器與 InP 雷射／EML／OCS 的光電互連平台，CY2030 TAM $550B，$1B+ 成本綜效且第一年即增厚 EPS。",
+        "RSI 28.8 超賣、單日爆量 2.8 倍、空單偏低且處於負 Gamma，若 12 月初財報重申 FY2028 目標，可能出現 put 平倉帶動的快速反彈。",
+        "Google 認股權證把最大客戶之一的利益與 MRVL 股價綁定至 FY2033。"
+      ],
+      "bearCase": [
+        "稀釋：發行約 4.4 億股，合併後原股東僅持有約 67%；Lumentum 毛利率 53% 低於 Marvell 58%，Raymond James 估短期 EPS 稀釋可能超過 10%。",
+        "交割期長達 1H CY2028，需美國 HSR 與多國（含中國）監管，期間併購套利（做空 MRVL／做多 LITE）持續壓抑股價。",
+        "Custom 毛利率稀釋延續，且 Broadcom 與 Google 合約至 2031、台系設計服務爭奪 AWS 訂單，custom 份額存在不確定性。",
+        "技術面破位：跌破 200 SMA 與 6 月以來區間下緣，20／50 SMA 即將死亡交叉；共識目標價中位數 $335 面臨下修潮。",
+        "AI CapEx 循環風險與高 Beta（2.19）：若 2027 年雲端資本支出成長放緩，高成長預期首當其衝。"
+      ],
+      "verdict": "事件衝擊造成估值重置：AI 本業基本面未變、股價回到 FY2028E 約 24x，但合併稀釋與 18 個月監管期的 overhang 會壓抑倍數至少 2–3 季。我們以 30x（較併購前約 34x 打折）給予 base 目標價 $216、評等 Buy；確認訊號是 12 月初財報重申 FY2028 約 $20B 目標，並收復 200 SMA（約 $184）。"
+    }
+  },
+  "changelog": [
+    {
+      "date": "2026-11-03",
+      "priceAtUpdate": 171.41,
+      "ratingFrom": null,
+      "ratingTo": "Buy",
+      "baseTargetFrom": null,
+      "baseTargetTo": 216,
+      "bearTarget": 113,
+      "bullTarget": 308,
+      "previousThesis": null,
+      "summary": "首次建立覆蓋。Lumentum 全股票併購消息使股價三日重挫 32%，估值回到 FY2028E 約 24x；以 FY2028E Non-GAAP EPS $7.20 × 30x 給予 base $216，評等 Buy。",
+      "keyChanges": [
+        "建立三情境：Bear $113（21x × $5.40）／Base $216（30x × $7.20）／Bull $308（38x × $8.10），機率 25／50／25。",
+        "Base 低於華爾街最低目標價 $225，反映我方預期共識將因稀釋而下修。",
+        "價格區間：≤$158 便宜、$173–$230 合理、≥$259 昂貴；關鍵技術位 $184（200 SMA）與 $200（Put Wall）。"
+      ]
+    }
+  ]
+}
