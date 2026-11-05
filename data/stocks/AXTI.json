@@ -1,0 +1,451 @@
+{
+  "$schema": "../../schema/stock-analysis.schema.json",
+  "schemaVersion": "1.0.0",
+  "meta": {
+    "analyst": "Claude Code (claude-opus-5-5)",
+    "dataAsOf": "2026-11-02",
+    "language": "zh-Hant",
+    "sources": [
+      { "id": "S1", "title": "AXT, Inc. Announces Third Quarter 2026 Financial Results (8-K Ex.99.1)", "publisher": "SEC EDGAR", "url": "https://www.sec.gov/Archives/edgar/data/0001051627/000143774926033941/ex_1013304.htm", "date": "2026-10-29" },
+      { "id": "S2", "title": "AXT, Inc. Announces Second Quarter 2026 Financial Results (8-K Ex.99.1)", "publisher": "SEC EDGAR", "url": "https://www.sec.gov/Archives/edgar/data/0001051627/000143774926025061/ex_974537.htm", "date": "2026-07-30" },
+      { "id": "S3", "title": "Transcript: What AXT (AXTI) Said On Its Q3 Earnings Call", "publisher": "MarketBeat", "url": "https://www.marketbeat.com/instant-alerts/transcript-what-axt-axti-said-on-its-q3-earnings-call-2026-10-29/", "date": "2026-10-29" },
+      { "id": "S4", "title": "AXT 8-K：公開發行普通股（8,560,311 股 @ $64.25，Northland 主辦）", "publisher": "SEC EDGAR", "url": "https://www.sec.gov/Archives/edgar/data/0001051627/000121390026045867/ea0286957-8k_axt.htm", "date": null },
+      { "id": "S5", "title": "AXT 10-Q（截至 2026-06-30；發行總額約 $632.5M）", "publisher": "SEC EDGAR", "url": "https://www.sec.gov/Archives/edgar/data/0001051627/000143774926027677/axti20260630_10q.htm", "date": null },
+      { "id": "S6", "title": "AXT 424B5 Prospectus Supplement（InP 出口許可審查狀態）", "publisher": "SEC EDGAR", "url": "https://www.sec.gov/Archives/edgar/data/0001051627/000121390026046176/ea0287123-424b5_axtinc.htm", "date": null },
+      { "id": "S7", "title": "AXT, Inc. (AXTI) Reports Fourth Quarter and Fiscal Year 2025 Financial Results", "publisher": "Yahoo Finance", "url": "https://finance.yahoo.com/news/axt-inc-axti-reports-fourth-075116474.html", "date": "2026-02-19" },
+      { "id": "S8", "title": "AXT Issues Q3 2026 Earnings Guidance（營收約 $66M、EPS $0.30–0.32）", "publisher": "MarketBeat", "url": "https://www.marketbeat.com/instant-alerts/axt-nasdaqaxti-issues-q3-2026-earnings-guidance-2026-07-30/", "date": "2026-07-30" },
+      { "id": "S9", "title": "AXTI Earnings Forecasts（Q3 共識 EPS $0.31、營收 $66.0M）", "publisher": "Benzinga", "url": "https://www.benzinga.com/quote/AXTI/earnings-forecasts", "date": null },
+      { "id": "S10", "title": "AXTI Stock Forecast & Analyst Price Targets（S&P Global 彙整）", "publisher": "StockAnalysis.com", "url": "https://stockanalysis.com/stocks/axti/forecast/", "date": "2026-10-30" },
+      { "id": "S11", "title": "AXTI Overview：IV30、Put/Call 成交量、52 週區間、Beta、市值", "publisher": "Market Chameleon", "url": "https://marketchameleon.com/Overview/AXTI/", "date": "2026-11-02" },
+      { "id": "S12", "title": "AXTI Option Chain（各到期日 Open Interest，用於自算 Max Pain／Gamma）", "publisher": "Nasdaq", "url": "https://www.nasdaq.com/market-activity/stocks/axti/option-chain", "date": "2026-11-02" },
+      { "id": "S13", "title": "AXTI Short Interest（Nasdaq 半月結算資料）", "publisher": "Nasdaq", "url": "https://www.nasdaq.com/market-activity/stocks/axti/short-interest", "date": "2026-10-15" },
+      { "id": "S14", "title": "AXTI／SPY／QQQ／SMH／COHR／LITE 日線歷史價格（scripts/market-data.mjs 自算）", "publisher": "Yahoo Finance", "url": "https://finance.yahoo.com/quote/AXTI/history/", "date": "2026-11-02" },
+      { "id": "S15", "title": "AXT Form 4 filings（內部人交易，EDGAR 原始 XML）", "publisher": "SEC EDGAR", "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001051627&type=4&dateb=&owner=include&count=40", "date": null },
+      { "id": "S16", "title": "AXTI 13F Holdings（2Q26 申報彙整）", "publisher": "Equibles", "url": "https://equibles.com/stocks/axti/holdings", "date": "2026-06-30" },
+      { "id": "S17", "title": "AXT INC (AXTI) Top Institutional Shareholders（1Q26）", "publisher": "InsiderSet", "url": "https://www.insiderset.com/stocks/axti/institutional-ownership", "date": "2026-03-31" },
+      { "id": "S18", "title": "Applied Optoelectronics Plunges 15%, Coherent Tumbles 13% as Hyperscaler Spending Fears Hit AI Optics Stocks", "publisher": "24/7 Wall St.", "url": "https://247wallst.com/investing/2026/10/30/applied-optoelectronics-plunges-15-coherent-tumbles-13-as-hyperscaler-spending-fears-hit-ai-optics-stocks-lumentum-and-marvell-sink-10/", "date": "2026-10-30" },
+      { "id": "S19", "title": "3 Catalysts That Could Ignite AXTI Stock on Oct. 29 (And 1 Huge Risk)", "publisher": "24/7 Wall St.", "url": "https://247wallst.com/investing/2026/10/26/3-catalysts-that-could-ignite-axti-stock-on-oct-29-and-1-huge-risk/", "date": "2026-10-26" },
+      { "id": "S20", "title": "Marvell + Lumentum Investor Presentation（InP 雷射產能與客戶脈絡）", "publisher": "SEC EDGAR", "url": "https://www.sec.gov/Archives/edgar/data/0001633978/000119312526442758/d163169dex992.htm", "date": "2026-11-02" }
+    ],
+    "dataQualityNotes": [
+      "技術指標、相對強弱、Max Pain／Gamma（單一 IV 75% 假設；AXTI 實際 IV30 約 108%，Gamma 曝險可能被低估）與空單皆以 scripts/market-data.mjs 自算，截至 2026-11-02 收盤。",
+      "AXT 財報新聞稿未附現金流量表，各季 OCF／CapEx／FCF 填 null；Q4 2025 的 Non-GAAP 營業利益率與 EPS 未取得可靠數字，填 null。",
+      "Q4 2026 公司未給營收區間，只表示約 $90M 營收已取得出口許可或不需許可且「高度有信心」認列，故指引 low／mid／high 皆以 $90M 表示，實際可能更高。",
+      "InP 積壓訂單「超過 $500M」來自財報電話會議摘要（S3），Q2 時僅稱「遠超過 $100M」，增幅很大，待 10-Q 或逐字稿確認。",
+      "空單比例以 10/15 結算 1,200 萬股 ÷ 約 6,300 萬股流通股（扣除內部人持股）估算，約 19%。",
+      "2027E EPS 我方估 $2.40，低於共識 $2.65，主因 Tongmei 私募完成後 AXT 持股降至約 73.4%，歸屬母公司的獲利比重下降；共識是否已反映不確定。",
+      "華爾街共識僅 5 位分析師，樣本小，且更新日為 10/30（Q3 財報後、11/2 類股重挫前）。"
+    ]
+  },
+  "valuation": {
+    "ticker": "AXTI",
+    "exchange": "NASDAQ",
+    "name": "AXT, Inc.",
+    "nameZh": "美國晶體技術",
+    "sector": "Information Technology",
+    "industry": "Semiconductor Materials",
+    "currency": "USD",
+    "currentPrice": 48.2,
+    "priceDate": "2026-11-02",
+    "sharesOutstandingM": 65.6,
+    "updatedAt": "2026-11-03T16:30:00+08:00",
+    "rating": "Buy",
+    "ratingRationale": "AXT 是 AI 光通訊雷射上游的磷化銦（InP）基板關鍵供應商之一，Q3 2026 營收 $73.4M（YoY +162%）、Non-GAAP 毛利率 56.1%、EPS $0.41 皆大幅優於共識，Q4 EPS 指引 $0.57–0.59、InP 積壓訂單逾 $500M。但股價自 5 月高點 $143.16 回落 66% 至 $48.20，對應 2027E EPS 約 20x，主因 10 月光通訊類股修正與 11/2 Marvell–Lumentum 併購後的類股賣壓。中國出口許可、Tongmei 私募稀釋與內部人大量賣出使風險偏高，因此評等 Buy 而非 Strong Buy，且三情境機率向悲觀端加重（30／45／25）。",
+    "fiscalYearNote": "會計年度與日曆年相同：FY2026 = 2026/1–2026/12；12 個月目標價以 2027E（日曆年）EPS 為基準。",
+    "timeHorizonMonths": 12,
+    "scenarios": {
+      "bear": {
+        "targetPrice": 21,
+        "impliedUpsidePct": -56.4,
+        "probabilityPct": 30,
+        "method": "Forward P/E",
+        "basisPeriod": "2027E",
+        "metricName": "Non-GAAP EPS",
+        "metricValue": 1.4,
+        "targetMultiple": 15,
+        "formula": "2027E Non-GAAP EPS $1.40 × 15x = $21",
+        "thesis": "中國商務部收緊 InP 出口許可（如 2025 年 Q4 重演），對美國客戶出貨受阻；同時 InP 價格隨擴產正常化、Tongmei 少數股權稀釋擴大，2027 年 EPS 僅 $1.40。地緣政治折價使倍數回到 15x。",
+        "keyAssumptions": [
+          "2027E 營收約 $350M（出口許可限制 + 價格回落）",
+          "淨利率約 30%、AXT 對 Tongmei 持股降至約 73%",
+          "稀釋後股數約 6,700 萬股，EPS $1.40",
+          "P/E 15x：中國製造與出口管制風險的地緣折價"
+        ],
+        "dcf": null
+      },
+      "base": {
+        "targetPrice": 58,
+        "impliedUpsidePct": 20.3,
+        "probabilityPct": 45,
+        "method": "Forward P/E",
+        "basisPeriod": "2027E",
+        "metricName": "Non-GAAP EPS",
+        "metricValue": 2.4,
+        "targetMultiple": 24,
+        "formula": "2027E Non-GAAP EPS $2.40 × 24x = $57.6 ≈ $58",
+        "thesis": "InP 產能 2026 年底達 2025 年底的 2.75–3 倍、2027 年再翻倍，積壓訂單逾 $500M 支撐出貨；出口許可維持「有延遲但可取得」的現況。Q4 2026 年化 EPS 已約 $2.32，2027 年在 Tongmei 稀釋後仍可達 $2.40。",
+        "keyAssumptions": [
+          "2027E 營收約 $500M（共識 $517M），InP 佔比約 80%",
+          "Non-GAAP 淨利率（歸屬母公司）約 31%，已扣除 Tongmei 私募後約 26.6% 少數股權",
+          "稀釋後股數約 6,650 萬股，EPS $2.40（共識 $2.65）",
+          "P/E 24x：以 2026→2028E EPS CAGR 約 60% 計 PEG 約 0.4，對地緣風險打折"
+        ],
+        "dcf": null
+      },
+      "bull": {
+        "targetPrice": 105,
+        "impliedUpsidePct": 117.8,
+        "probabilityPct": 25,
+        "method": "Forward P/E",
+        "basisPeriod": "2027E",
+        "metricName": "Non-GAAP EPS",
+        "metricValue": 3.1,
+        "targetMultiple": 34,
+        "formula": "2027E Non-GAAP EPS $3.10 × 34x = $105.4 ≈ $105",
+        "thesis": "對美國客戶的 InP 出口許可全面放行，6 吋 InP 量產帶動成本下降，CPO／NPO 外部光源與 1.6T 雷射需求讓 InP 供不應求延續到 2028 年；Tongmei 香港上市釋放價值。",
+        "keyAssumptions": [
+          "2027E 營收約 $620M，毛利率維持 55% 以上",
+          "淨利率（歸屬母公司）約 33%，EPS $3.10",
+          "P/E 34x：低於 2026 年 5 月高點 $143 時的估值",
+          "Tongmei 香港上市後市場給予子公司溢價"
+        ],
+        "dcf": null
+      }
+    },
+    "streetConsensus": {
+      "asOf": "2026-10-30",
+      "source": "StockAnalysis.com（S&P Global Market Intelligence 彙整）",
+      "analystCount": 5,
+      "lowTarget": 55,
+      "medianTarget": 93,
+      "meanTarget": 91.6,
+      "highTarget": 125,
+      "ratings": { "buy": 4, "hold": 1, "sell": 0 },
+      "consensusRating": "Buy",
+      "notes": "Buy 含 Strong Buy 3 家 + Buy 1 家。Q3 財報後：Wedbush 重申 Buy $93、Needham 維持 Buy $90；Northland（$125，亦是 4 月增資主辦券商）、Craig-Hallum 看多，B. Riley 為 Hold $55。樣本小且更新於 11/2 類股重挫前，我方 base $58 接近最低目標價 $55。"
+    },
+    "priceZones": {
+      "basis": "2027E Non-GAAP EPS $2.40（我方 base 假設）",
+      "cheap": { "max": 38, "multiple": 16 },
+      "fair": { "low": 48, "high": 67, "multipleLow": 20, "multipleHigh": 28 },
+      "expensive": { "min": 82, "multiple": 34 },
+      "methodology": "以 2027E EPS $2.40 乘本益比帶：≤16x 便宜（$38，與 4 月低點 $39.70、7 月低點 $36.73 支撐重疊）、20–28x 合理（$48–$67，上緣約等於 50／200 SMA 叢集）、≥34x 昂貴（$82 以上，接近 9–10 月反彈高點 $84–$88）。另約 $11.5／股淨現金未計入倍數，作為安全邊際。",
+      "forwardEPS": 2.4,
+      "targetPE": 24,
+      "expectedCAGRPct": 60,
+      "pegTarget": 0.4,
+      "sliderBounds": {
+        "eps": { "min": 1, "max": 4, "step": 0.05 },
+        "pe": { "min": 8, "max": 50, "step": 0.5 },
+        "cagr": { "min": 0, "max": 150, "step": 1 }
+      }
+    }
+  },
+  "fundamentals": {
+    "moatAndBusinessModel": {
+      "businessSummary": "AXT 總部位於加州 Fremont，製造幾乎全在中國（北京通美 Tongmei 及其子公司），生產化合物半導體基板：磷化銦（InP，Q3 佔 74%，用於資料中心 EML／CW 雷射與光偵測器）、砷化鎵（GaAs，RF、LED、VCSEL）、鍺（Ge，太空太陽能），並透過子公司與合資企業垂直整合高純度銦、鎵等原材料。AI 光通訊對 InP 雷射的需求使 2026 年 InP 營收機會較年初擴大四倍以上；2026 年 4 月增資 $632.5M、10 月簽署 Tongmei 最高 $545M 私募，皆用於擴充 InP 產能。",
+      "moatRating": "Narrow",
+      "moatSources": [
+        { "type": "EfficientScale", "title": "InP 基板寡占", "description": "InP 單晶成長（VGF 製程）技術門檻高，全球主要供應商僅 Sumitomo Electric、JX Advanced Metals 與 AXT 等少數幾家；需求暴增時新進者需數年建廠與客戶認證。" },
+        { "type": "CostAdvantage", "title": "原材料垂直整合與中國成本", "description": "透過 Jinmei 等子公司精煉高純度銦，並持有鎵、鍺等原料合資企業，掌握關鍵原材料與成本；中國生產基地具規模與成本優勢。" },
+        { "type": "SwitchingCosts", "title": "長約與客戶認證", "description": "雷射廠需 12–18 個月認證基板；與 Lumentum 簽訂長期供貨協議並收取 $43.5M 預付款，InP 積壓訂單含多年期合約。" }
+      ],
+      "competitivePosition": "需求面極強但供給面受限：AXT 是少數能快速擴產的 InP 基板供應商，且 2 吋 → 4 吋 → 6 吋的尺寸轉換領先。弱點是所有生產都在中國，對美國客戶出貨需取得中國商務部出口許可，地緣政治使部分客戶可能尋求日系第二供應源。",
+      "keyCompetitors": [
+        { "name": "Sumitomo Electric（住友電工）", "ticker": null, "overlap": "InP 與 GaAs 基板，日系主要供應商" },
+        { "name": "JX Advanced Metals（JX 金屬）", "ticker": null, "overlap": "InP 基板，日系第二供應源" },
+        { "name": "Coherent", "ticker": "COHR", "overlap": "自有 InP 雷射產線，可能向上游整合基板" },
+        { "name": "中國本土 InP 基板廠", "ticker": null, "overlap": "受惠國產替代，價格競爭與產能擴張風險" },
+        { "name": "Freiberger Compound Materials", "ticker": null, "overlap": "GaAs 基板" }
+      ],
+      "segmentMix": {
+        "period": "Q3 2026（截至 2026-09-30）",
+        "segments": [
+          { "name": "磷化銦 InP 基板", "revenueUSDm": 54.3, "sharePct": 74.0, "yoyPct": null, "qoqPct": null, "commentary": "主要用於資料中心光通訊雷射；價格上漲與 3 吋→4 吋轉換推升毛利。" },
+          { "name": "原材料（銦、鎵等）", "revenueUSDm": 9.7, "sharePct": 13.2, "yoyPct": null, "qoqPct": null, "commentary": "子公司與合資企業銷售高純度原材料；Jinmei 精煉高純度銦。" },
+          { "name": "砷化鎵 GaAs 基板", "revenueUSDm": 9.1, "sharePct": 12.4, "yoyPct": null, "qoqPct": null, "commentary": "RF、LED、VCSEL；管理層預期 Q4 季節性下滑，2027 年有市佔提升機會。" },
+          { "name": "鍺 Ge 基板", "revenueUSDm": 0.3, "sharePct": 0.5, "yoyPct": null, "qoqPct": null, "commentary": "太空太陽能電池，規模很小。" }
+        ]
+      },
+      "productLines": [
+        { "name": "InP 4 吋基板", "segment": "InP", "description": "雷射材料需求將於 2027 年更明顯轉向 4 吋，是毛利率提升的主因之一。", "momentum": "Accelerating" },
+        { "name": "InP 6 吋基板", "segment": "InP", "description": "6 吋產線已進入試產，量產後可大幅降低雷射廠單位成本。", "momentum": "Growing" },
+        { "name": "InP 2／3 吋基板", "segment": "InP", "description": "既有光偵測器與電信雷射應用，逐步被 4 吋取代。", "momentum": "Stable" },
+        { "name": "GaAs 基板", "segment": "GaAs", "description": "RF 與光電應用，Q4 季節性下滑。", "momentum": "Stable" },
+        { "name": "高純度原材料", "segment": "原材料", "description": "銦精煉與鎵、鍺原料，提供供應安全與成本優勢。", "momentum": "Growing" }
+      ]
+    },
+    "earningsAndGuidance": {
+      "latestQuarter": {
+        "fiscalPeriod": "Q3 2026",
+        "periodEnd": "2026-09-30",
+        "reportDate": "2026-10-29",
+        "revenue": { "actualUSDm": 73.4, "consensusUSDm": 66.0, "guidanceMidUSDm": 66.0, "yoyPct": 162.2, "qoqPct": 54.3, "result": "Beat" },
+        "nonGaapEps": { "actual": 0.41, "consensus": 0.31, "guidanceMid": 0.31, "yoyPct": null, "result": "Beat" },
+        "grossMarginNonGaapPct": 56.1,
+        "operatingMarginNonGaapPct": 40.2,
+        "stockReactionPct": -9.6,
+        "highlights": [
+          "營收 $73.4M（YoY +162%、QoQ +54%），高於約 $66M 的指引與共識，出口許可到位使營收超過「僅計已核發許可」的下限。",
+          "InP 營收 $54.3M（74%）；Non-GAAP 毛利率 56.1%（Q2 45.0%、去年同期 22.4%），受惠量、組合、InP 漲價與 4 吋轉換。",
+          "Non-GAAP EPS $0.41（共識 $0.31）、GAAP EPS $0.39；Non-GAAP 營業利益率 40.2%。",
+          "財報次日股價 −9.6%，主要受光通訊類股賣壓拖累；現金與投資 $825.9M（季增 $77M）。"
+        ]
+      },
+      "guidance": {
+        "period": "Q4 2026",
+        "revenue": { "lowUSDm": 90, "midUSDm": 90, "highUSDm": 90, "consensusBeforeUSDm": null, "yoyPct": 291.3 },
+        "nonGaapEps": { "low": 0.57, "mid": 0.58, "high": 0.59, "consensusBefore": null },
+        "grossMarginNonGaapPct": null,
+        "opexNonGaapUSDm": 13,
+        "vsConsensus": "NA",
+        "commentary": "公司未給營收區間：CFO 表示約 $90M 營收（已取得出口許可或不需許可的產品）有高度信心於 Q4 認列；Non-GAAP EPS $0.57–0.59、GAAP EPS $0.56–0.58（稀釋股數約 6,610 萬股），Non-GAAP opex 約 $13M。取得額外許可即有上行空間。"
+      },
+      "fullYearOutlook": [
+        { "period": "2026 年底", "metric": "InP 產能", "value": "達 2025 年底的 2.75–3 倍", "change": "Raised", "note": "年初目標為倍增，8 月已超越。" },
+        { "period": "2027", "metric": "InP 產能", "value": "再翻倍", "change": "Initiated", "note": "改建新取得的相鄰廠房，未揭露資本支出金額。" },
+        { "period": "現況", "metric": "InP 積壓訂單", "value": "超過 $500M", "change": "Raised", "note": "含多年期協議、12 個月內合約與現貨訂單；Q2 時稱遠超過 $100M。" },
+        { "period": "2027", "metric": "供需", "value": "不認為 2027 年會產能過剩", "change": "Maintained", "note": "客戶希望擴大供貨承諾，需求成長快於產能。" },
+        { "period": "2026 Q4–2027", "metric": "Tongmei 私募", "value": "最高 $545M，AXT 保留約 73.4%", "change": "Initiated", "note": "Tongmei 同時規劃香港上市。" },
+        { "period": "2026", "metric": "6 吋 InP", "value": "進入試產", "change": "Initiated", "note": "量產時程未公布。" }
+      ],
+      "earningsCallTakeaways": [
+        "Q3 營收 $73.4M、InP $54.3M（74%），2026 年 InP 營收機會已較年初擴大四倍以上。",
+        "InP 積壓訂單超過 $500M，含多年期協議、短期合約與現貨訂單；需求成長快於產能。",
+        "InP 產能年初目標倍增、8 月已達成，預期 2026 年底達 2025 年底的 2.75–3 倍，2027 年再翻倍；6 吋線試產中。",
+        "與 Lumentum 簽訂長期供貨協議，收取 $43.5M 預付款（列為負債直到出貨）；前五大客戶約佔 35%，一家超過 10%。",
+        "Non-GAAP 毛利率 56.1%，來自量、組合、InP 漲價與 3 吋→4 吋轉換；2027 年雷射材料將更明顯轉向 4 吋。",
+        "Q4 約 $90M 營收已取得許可或不需許可、高度有信心認列；Non-GAAP EPS 指引 $0.57–0.59。",
+        "Tongmei 簽署最高 $545M 私募，完成後 AXT 持股約 73.4%，Tongmei 規劃香港上市；子公司 Jinmei 精煉高純度銦。",
+        "管理層認為 2027 年不會產能過剩；GaAs Q4 季節性下滑，但 2027 年有市佔提升機會。"
+      ]
+    },
+    "financialMetrics": {
+      "unit": "USD M",
+      "quarterly": [
+        { "period": "Q3 2025", "periodEnd": "2025-09-30", "isEstimate": false, "revenue": 28.0, "revenueYoYPct": 18.6, "grossMarginNonGaapPct": 22.4, "operatingMarginNonGaapPct": -1.5, "nonGaapEps": -0.03, "operatingCashFlow": null, "capex": null, "fcf": null, "fcfMarginPct": null, "sbc": null, "sbcPctOfRevenue": null, "buybacks": null },
+        { "period": "Q4 2025", "periodEnd": "2025-12-31", "isEstimate": false, "revenue": 23.0, "revenueYoYPct": -8.4, "grossMarginNonGaapPct": 21.5, "operatingMarginNonGaapPct": null, "nonGaapEps": null, "operatingCashFlow": null, "capex": null, "fcf": null, "fcfMarginPct": null, "sbc": null, "sbcPctOfRevenue": null, "buybacks": null },
+        { "period": "Q1 2026", "periodEnd": "2026-03-31", "isEstimate": false, "revenue": 26.9, "revenueYoYPct": 38.7, "grossMarginNonGaapPct": 29.9, "operatingMarginNonGaapPct": -2.0, "nonGaapEps": -0.01, "operatingCashFlow": null, "capex": null, "fcf": null, "fcfMarginPct": null, "sbc": null, "sbcPctOfRevenue": null, "buybacks": null },
+        { "period": "Q2 2026", "periodEnd": "2026-06-30", "isEstimate": false, "revenue": 47.6, "revenueYoYPct": 164.8, "grossMarginNonGaapPct": 45.0, "operatingMarginNonGaapPct": 23.5, "nonGaapEps": 0.19, "operatingCashFlow": null, "capex": null, "fcf": null, "fcfMarginPct": null, "sbc": null, "sbcPctOfRevenue": null, "buybacks": null },
+        { "period": "Q3 2026", "periodEnd": "2026-09-30", "isEstimate": false, "revenue": 73.4, "revenueYoYPct": 162.2, "grossMarginNonGaapPct": 56.1, "operatingMarginNonGaapPct": 40.2, "nonGaapEps": 0.41, "operatingCashFlow": null, "capex": null, "fcf": null, "fcfMarginPct": null, "sbc": 1.07, "sbcPctOfRevenue": 1.5, "buybacks": null },
+        { "period": "Q4 2026E", "periodEnd": "2026-12-31", "isEstimate": true, "revenue": 90, "revenueYoYPct": 291.3, "grossMarginNonGaapPct": null, "operatingMarginNonGaapPct": null, "nonGaapEps": 0.58, "operatingCashFlow": null, "capex": null, "fcf": null, "fcfMarginPct": null, "sbc": null, "sbcPctOfRevenue": null, "buybacks": null }
+      ],
+      "ttm": {
+        "period": "Q4 2025–Q3 2026",
+        "revenue": 170.9,
+        "revenueYoYPct": 88.8,
+        "fcf": null,
+        "fcfMarginPct": null,
+        "sbcPctOfRevenue": null,
+        "buybacks": null,
+        "dividends": 0
+      },
+      "returns": {
+        "roicPct": null,
+        "roePct": null,
+        "basis": "2026 年 4 月增資 $632.5M 與 Tongmei 私募使權益與投入資本大幅變動，且獲利剛由虧轉盈，暫不估算；以 Q3 年化歸屬淨利約 $107M 計，若以期末市值換算 P/E 約 30x（尚未計入成長）。"
+      },
+      "ruleOf40": {
+        "applicable": false,
+        "score": null,
+        "basis": "材料製造業不適用 Rule of 40；FCF 亦未揭露。"
+      },
+      "balanceSheet": {
+        "asOf": "2026-09-30",
+        "cashUSDm": 825.9,
+        "totalDebtUSDm": 72.5,
+        "netCashUSDm": 753.4,
+        "notes": "現金及約當現金 $485.5M、受限現金 $41.2M、短期投資 $27.3M、長期投資 $272.0M（公司口徑合計 $825.9M）；短期借款 $72.5M。大部分資金位於中國子公司並指定用於 InP 擴產；其他長期負債 $42.9M 含 Lumentum 預付款。存貨 $103.7M。"
+      },
+      "capitalReturn": {
+        "buybackAuthorizationRemainingUSDm": null,
+        "dividendPerShareAnnual": 0,
+        "notes": "不配息、無回購；2026 年 4 月以 $64.25 增發 9,844,357 股（含超額配售），總額約 $632.5M，相當於增資前股本約 18%。"
+      },
+      "commentary": "營收由 Q4 2025 的 $23.0M（受出口許可影響）一路跳升到 Q3 2026 的 $73.4M，Non-GAAP 毛利率由 21.5% 升至 56.1%、營業利益率由虧損轉為 40.2%，展現極強的營業槓桿。品質面要注意：獲利高度依賴中國出口許可節奏、Tongmei 私募後少數股權上升、增資造成約 18% 稀釋，以及擴產所需的資本支出尚未揭露。"
+    },
+    "growthDrivers": [
+      { "title": "AI 光通訊雷射對 InP 的結構性需求", "description": "1.6T／200G-per-lane EML、CW 雷射與 CPO 外部光源都以 InP 為基材；InP 積壓訂單逾 $500M，約為 2026 年全年營收的兩倍。", "timeframe": "2026–2028", "magnitude": "High" },
+      { "title": "產能三倍化再翻倍", "description": "2026 年底產能達 2025 年底的 2.75–3 倍，2027 年再翻倍，並改建新取得廠房；增資 $632.5M 與 Tongmei 私募提供資金。", "timeframe": "2026 Q4–2027", "magnitude": "High" },
+      { "title": "漲價與 4 吋／6 吋轉換", "description": "InP 價格上漲加上 3 吋→4 吋轉換，使 Non-GAAP 毛利率由 22% 升至 56%；6 吋試產可再降低客戶成本並提高 AXT 單片價值。", "timeframe": "2026–2027", "magnitude": "Medium" },
+      { "title": "長約與預付款鎖定客戶", "description": "與 Lumentum 簽長約並取得 $43.5M 預付款，客戶希望擴大供貨承諾，降低需求波動。", "timeframe": "2026–2028", "magnitude": "Medium" },
+      { "title": "原材料垂直整合", "description": "Jinmei 精煉高純度銦，加上鎵、鍺原料合資企業，在中國稀有金屬出口管制下掌握供應與成本。", "timeframe": "持續", "magnitude": "Low" },
+      { "title": "Tongmei 香港上市", "description": "Tongmei 規劃香港上市，可為擴產籌資並讓市場重新評價子公司價值。", "timeframe": "2027（預估）", "magnitude": "Medium" }
+    ],
+    "secRisks": [
+      { "title": "中國 InP 出口許可", "description": "中國商務部自 2025 年 2 月將 InP 列入出口管制，每批出口需許可；2025 年 Q4 營收即因許可核發少於預期而低於指引。依增資說明書，對美國客戶的 InP 出口許可仍在最後審查階段。", "source": "10-K Risk Factors／424B5", "severity": "High", "mitigation": "Q4 約 $90M 營收已取得許可或不需許可；客戶分布於多個地區。" },
+      { "title": "生產集中於中國的地緣政治風險", "description": "基板與原材料製造幾乎全在中國，美中科技管制升級（出口管制、關稅、實體清單）可能影響出貨或迫使客戶尋找日系第二供應源。", "source": "10-K Risk Factors", "severity": "High", "mitigation": "與美國雷射廠簽訂長約與預付款，客戶轉換需 12–18 個月認證。" },
+      { "title": "Tongmei 少數股權稀釋", "description": "Tongmei 私募最高 $545M 完成後，AXT 持股降至約 73.4%，歸屬母公司的獲利比重下降；若私募基金要求贖回或撤資，亦會影響資金。", "source": "8-K／10-Q Risk Factors", "severity": "Medium", "mitigation": "AXT 仍保有控制權，資金用於擴產可提升整體獲利。" },
+      { "title": "擴產執行與 2028 年後供需反轉", "description": "全球 InP 產能（AXT、日系、中國本土廠）同步擴張，若 AI 光通訊需求放緩，2028 年後可能出現價格回落與產能過剩。", "source": "產業競爭", "severity": "Medium", "mitigation": "管理層表示 2027 年不會過剩，多年期協議提供部分保障。" },
+      { "title": "股權稀釋與內部人賣出", "description": "4 月以 $64.25 增資約 18%；CEO Morris Young 2026 年累計賣出約 56 萬股（約 $3,750 萬，均非 10b5-1 計畫），董事亦大量賣出。", "source": "SEC Form 4／8-K", "severity": "Medium", "mitigation": "CEO 仍持有約 217 萬股（約 3.3%）。" },
+      { "title": "客戶集中與光通訊週期", "description": "前五大客戶約佔 35%，需求依附於 AI 光通訊資本支出；10 月光通訊類股多次單日重挫 7–15%。", "source": "10-Q", "severity": "Medium", "mitigation": "積壓訂單逾 $500M 提供能見度。" },
+      { "title": "極高波動與空單", "description": "Beta 約 3.58、IV30 約 108%，空單約佔流通股 19%，股價一年內由 $7.80 漲到 $143 再跌到 $48。", "source": "市場風險", "severity": "Medium", "mitigation": "高空單在利多時可能引發回補。" }
+    ]
+  },
+  "technicals": {
+    "asOf": "2026-11-02",
+    "priceRange52w": { "high": 143.16, "highDate": "2026-05-26", "low": 7.8, "lowDate": "2025-11-04" },
+    "trendSummary": {
+      "shortTerm": { "direction": "Bearish", "comment": "10/28 $64.38 到 11/2 $48.20 三日 −25%，跌破 10 月低點 $50.57；11/2 收在當日低點 $47.23 附近，成交量 1,530 萬股為 50 日均量 1.7 倍，RSI 37.5。" },
+      "mediumTerm": { "direction": "Bearish", "comment": "自 5 月 $143 高點以來形成一連串更低的高點（8 月 $97.8、9–10 月 $84–$88），目前位於 20／50／200 SMA 之下，20 SMA $61.07 已低於 50 SMA $65.81。" },
+      "longTerm": { "direction": "Neutral", "comment": "1 年仍 +506%、YTD +195%，但 200 SMA $64.97 走平且股價已在其下方；長線多頭需重新站回 $65 才能延續。" },
+      "movingAverages": {
+        "sma20": 61.07,
+        "sma50": 65.81,
+        "sma200": 64.97,
+        "vwap": { "value": 64.37, "anchor": "2026 YTD Anchored VWAP（年初起算）" }
+      },
+      "summary": "三條均線與 YTD AVWAP 全部集中在 $61–$66，形成厚重壓力帶；下方支撐為 $45（最大 Put OI）與 $37–$40（4 月、7 月低點）。股價位於合理價區間下緣（2027E 約 20x），空單約佔流通股 19%，基本面利多出現時有劇烈回補的條件。"
+    },
+    "relativeStrength": {
+      "stockReturns": { "m1": -43.9, "m3": -29.8, "ytd": 194.8, "y1": 506.3 },
+      "benchmarks": [
+        { "symbol": "SPY", "name": "S&P 500 ETF", "role": "Market", "returns": { "m1": -2.3, "m3": -0.7, "ytd": 10.3, "y1": 10.3 } },
+        { "symbol": "QQQ", "name": "Nasdaq-100 ETF", "role": "Growth", "returns": { "m1": -9.1, "m3": -2.7, "ytd": 10.9, "y1": 8.3 } },
+        { "symbol": "SMH", "name": "VanEck 半導體 ETF", "role": "Sector", "returns": { "m1": -19.4, "m3": -6.8, "ytd": 41.1, "y1": 40.0 } },
+        { "symbol": "COHR", "name": "Coherent", "role": "Peer", "returns": { "m1": -40.7, "m3": -30.6, "ytd": 8.3, "y1": 51.5 } },
+        { "symbol": "LITE", "name": "Lumentum（主要客戶）", "role": "Peer", "returns": { "m1": -36.9, "m3": -12.2, "ytd": 85.7, "y1": 239.6 } }
+      ],
+      "commentary": "近 1 個月 −43.9%，跌幅大於 Coherent（−40.7%）與 Lumentum（−36.9%），屬高 Beta 的上游材料股在類股修正中被放大；但 YTD +195%、1 年 +506% 仍遠超所有基準與同業。"
+    },
+    "keyLevels": [
+      { "type": "MajorResistance", "price": 65, "rangeLow": 61, "rangeHigh": 66, "significance": "20 SMA $61.07、YTD AVWAP $64.37、200 SMA $64.97、50 SMA $65.81 四線叢集，也是 10/28 高點 $65.20；站回此區代表類股修正結束。" },
+      { "type": "SecondaryResistance", "price": 56, "rangeLow": 54.75, "rangeHigh": 58.84, "significance": "10/30 收盤 $55.06、11/2 高點 $56.89 與 11/6 Max Pain $57，估算 Gamma Flip 約 $54.75。" },
+      { "type": "Pivot", "price": 51, "rangeLow": 50.57, "rangeHigh": 52.1, "significance": "10 月低點 $50.57 與 10/22–10/23 低點 $51.0–$51.7 形成的頸線，11/2 已跌破；收復即為止跌訊號。" },
+      { "type": "SecondarySupport", "price": 45, "rangeLow": 45, "rangeHigh": 47.23, "significance": "11/2 盤中低點 $47.23，以及最大 Put OI $45（16,713 口）。" },
+      { "type": "StrongSupport", "price": 38, "rangeLow": 36.73, "rangeHigh": 39.7, "significance": "7 月低點 $36.73 與 4 月低點 $39.70，對應 2027E 16x 便宜價上限 $38。" }
+    ],
+    "marketStructureAndFlow": {
+      "momentum": {
+        "rsi14": 37.5,
+        "rsiState": "Neutral",
+        "macd": { "line": -4.21, "signal": -3.67, "histogram": -0.54, "state": "Bearish" },
+        "avgVolume50dM": 9.1,
+        "volumeComment": "財報後 10/29–11/2 三日成交量 1,310 萬、1,480 萬、1,530 萬股，逐日放大且價格逐日走低，屬持續性賣壓而非單日恐慌。"
+      },
+      "institutional": {
+        "asOfQuarter": "2Q CY2026 13F（截至 2026-06-30，彙整未完整）",
+        "ownershipPct": null,
+        "holdersCount": 201,
+        "summary": "2Q26 已彙整 201 家機構、申報市值約 $22.5 億；Jane Street、Vanguard、E20 Capital 為前三大。持股結構偏向交易型（做市商、量化）與小型成長基金，波動大。4 月增資的新股東成本約 $64.25，高於現價 33%。",
+        "notableHolders": [
+          { "holder": "Jane Street Group", "action": "Holding", "detail": "約佔 13F 申報市值 6.1%，多與選擇權做市相關" },
+          { "holder": "Vanguard", "action": "Holding", "detail": "約 5.8%，被動型持股" },
+          { "holder": "E20 Capital", "action": "Holding", "detail": "1Q26 約 510 萬股（約 $1.68 億），1Q 最大揭露持有人" },
+          { "holder": "Morgan Stanley", "action": "Holding", "detail": "前幾大持有人之一" }
+        ]
+      },
+      "insider": {
+        "period": "2026-03 至 2026-10",
+        "netActivity": "NetSell",
+        "summary": "CEO Morris Young 2026 年累計賣出約 56 萬股（約 $3,750 萬），其中 6/1–6/2 在 $112–$113 履約後賣出約 19.7 萬股，均未勾選 10b5-1；董事 Jesse Chen（6 月約 6 萬股）、David Chang、Leonard LeBlanc 與 CFO Gary Fischer 亦有賣出。10/27 CEO 與 CFO 僅獲配股票獎酬，無公開市場買進。",
+        "transactions": [
+          { "date": "2026-08-17", "insider": "Leonard LeBlanc", "role": "Director", "type": "Sell", "shares": 4000, "price": 96.07, "valueUSD": 384280, "plan10b51": false },
+          { "date": "2026-06-15", "insider": "Jesse Chen", "role": "Director", "type": "Sell", "shares": 60005, "price": null, "valueUSD": null, "plan10b51": false },
+          { "date": "2026-06-15", "insider": "David Chang", "role": "Director", "type": "Sell", "shares": 8333, "price": 111.17, "valueUSD": 926392, "plan10b51": false },
+          { "date": "2026-06-02", "insider": "Morris Young", "role": "CEO", "type": "Sell", "shares": 123601, "price": 113.33, "valueUSD": 14007590, "plan10b51": false },
+          { "date": "2026-06-01", "insider": "Morris Young", "role": "CEO", "type": "Sell", "shares": 73897, "price": 112.39, "valueUSD": 8305336, "plan10b51": false },
+          { "date": "2026-03-13", "insider": "Gary Fischer", "role": "CFO", "type": "Sell", "shares": 80776, "price": 50.64, "valueUSD": 4090715, "plan10b51": false },
+          { "date": "2026-03-09", "insider": "Morris Young", "role": "CEO", "type": "Sell", "shares": 125893, "price": 36.51, "valueUSD": 4596656, "plan10b51": false },
+          { "date": "2026-03-02", "insider": "Morris Young", "role": "CEO", "type": "Sell", "shares": 159536, "price": 43.32, "valueUSD": 6911466, "plan10b51": false }
+        ]
+      },
+      "shortInterest": {
+        "asOf": "2026-10-15",
+        "sharesShortM": 12.0,
+        "pctOfFloat": 19.0,
+        "daysToCover": 1.41,
+        "trend": "Rising",
+        "comment": "空單由 9/15 的 880 萬股升至 10/15 的 1,200 萬股（+36%），約佔流通股 19%，空方持續加碼；但 Days to Cover 僅 1.4 天（成交量大），若出口許可或訂單出現利多，回補速度會很快。"
+      },
+      "options": {
+        "asOf": "2026-11-02",
+        "putCallRatioOI": 0.85,
+        "putCallRatioVolume": 0.44,
+        "iv30Pct": 107.7,
+        "maxPain": [
+          { "expiry": "2026-11-06", "price": 57 },
+          { "expiry": "2026-11-20", "price": 60 },
+          { "expiry": "2026-12-18", "price": 70 },
+          { "expiry": "2027-01-15", "price": 65 }
+        ],
+        "gammaLevels": [
+          { "price": 70, "type": "CallWall", "note": "合計 Call OI 9,109 口最大，$85 另有 7,392 口" },
+          { "price": 54.75, "type": "GammaFlip", "note": "估算淨 Gamma 由負轉正的價位" },
+          { "price": 45, "type": "PutWall", "note": "合計 Put OI 16,713 口，遠大於其他履約價，是近端主要支撐" }
+        ],
+        "netGammaRegime": "Negative",
+        "comment": "IV30 高達 108%（隱含單月約 ±31% 波動），股價低於所有到期日 Max Pain（$57–$70）與 Gamma Flip $54.75，處於負 Gamma 區；選擇權成交量 Put/Call 僅 0.44，顯示下跌中仍有大量買 Call 的抄底資金。$45 的大量 Put OI 是 11 月的關鍵防線。"
+      }
+    }
+  },
+  "newsAndCatalysts": {
+    "recentNews": [
+      { "date": "2026-11-02", "headline": "Marvell–Lumentum 併購日光通訊股重挫，AXTI −12.5% 至 $48.20", "type": "News", "impact": "Bearish", "summary": "主要客戶 Lumentum 被 Marvell 全股票併購，LITE −18.6%、MRVL −12.7%，光通訊上游一併遭拋售；AXTI 收在當日低點附近。", "fundamentalImpact": "對 AXT 基本面影響偏中性：Lumentum 合併後的 InP 雷射需求不變甚至更大，且 Lumentum 已與 AXT 簽長約並預付 $43.5M；下跌主要是類股估值與資金面。", "sourceIds": ["S14", "S20"] },
+      { "date": "2026-10-30", "headline": "Hyperscaler 支出疑慮重擊光通訊股", "type": "Macro", "impact": "Bearish", "summary": "大型科技財報週引發 AI 資本支出疑慮，Applied Optoelectronics −15%、Coherent −13%，Lumentum、Marvell 約 −10%；AXTI 財報次日 −9.6%。", "fundamentalImpact": "反映市場對 2027 年 AI 光通訊需求的不確定性，壓縮整個供應鏈的估值倍數。", "sourceIds": ["S18"] },
+      { "date": "2026-10-29", "headline": "Q3 2026 財報大幅超預期：營收 $73.4M（+162%）、EPS $0.41，Q4 EPS 指引 $0.57–0.59", "type": "EarningsCall", "impact": "Bullish", "summary": "營收與 EPS 分別高於共識 $66.0M／$0.31；InP $54.3M、Non-GAAP 毛利率 56.1%；InP 積壓訂單逾 $500M，產能 2026 年底達 2.75–3 倍、2027 年再翻倍。", "fundamentalImpact": "確立 AXT 由虧損轉為高獲利的拐點，Q4 年化 EPS 約 $2.32，是 2027E $2.40 的基礎。", "sourceIds": ["S1", "S3", "S9"] },
+      { "date": "2026-10-29", "headline": "Tongmei 簽署最高 $545M 私募，AXT 保留約 73.4%，並規劃香港上市", "type": "8-K", "impact": "Neutral", "summary": "資金用於 InP 與原材料產能擴充；以最高金額計 AXT 仍保有控制權。", "fundamentalImpact": "擴產資金到位降低執行風險，但少數股權上升會稀釋歸屬 AXT 股東的獲利，是我方 EPS 低於共識的主因。", "sourceIds": ["S3"] },
+      { "date": "2026-10-29", "headline": "與 Lumentum 簽長期供貨協議並收取 $43.5M 預付款", "type": "Product", "impact": "Bullish", "summary": "預付款列為負債直到出貨；客戶希望擴大供貨承諾，需求成長快於產能。", "fundamentalImpact": "長約與預付款提高營收能見度，也顯示 InP 基板在供應鏈中的稀缺性。", "sourceIds": ["S3"] },
+      { "date": "2026-07-30", "headline": "Q2 2026 營收 $47.6M（+165%）、EPS $0.19，轉虧為盈", "type": "EarningsCall", "impact": "Bullish", "summary": "Non-GAAP 毛利率 45.0%，Q3 指引營收約 $66M、EPS $0.30–0.32；積壓訂單遠超過 $100M。", "fundamentalImpact": "確認出口許可恢復後營收快速回升。", "sourceIds": ["S2", "S8"] },
+      { "date": "2026-06-02", "headline": "CEO Morris Young 在 $112–$113 履約後賣出約 19.7 萬股", "type": "Filing", "impact": "Bearish", "summary": "6/1–6/2 合計約 $2,230 萬，未勾選 10b5-1；6 月董事 Jesse Chen、David Chang 亦在 $87–$115 區間賣出。", "fundamentalImpact": "內部人在股價高檔大量賣出，對市場信心有負面影響。", "sourceIds": ["S15"] },
+      { "date": "2026-04-21", "headline": "以 $64.25 公開增資 9,844,357 股，總額約 $632.5M", "type": "Filing", "impact": "Neutral", "summary": "Northland 主辦，超額配售全數行使；資金主要用於 Tongmei 擴充 InP 產能。", "fundamentalImpact": "約 18% 稀釋，但換得擴產資金與 $825.9M 現金部位。", "sourceIds": ["S4", "S5"] },
+      { "date": "2026-02-19", "headline": "Q4 2025 營收 $23.0M 低於指引，因中國核發 InP 出口許可少於預期", "type": "EarningsCall", "impact": "Bearish", "summary": "原指引 $27–30M，盤後一度 −5.5%；Q1 起陸續取得許可。", "fundamentalImpact": "是出口管制風險的實際案例，也是 bear 情境的主要依據。", "sourceIds": ["S7"] }
+    ],
+    "catalystTimeline": [
+      { "date": "2026-11-10", "dateConfirmed": false, "window": "10/30 結算空單資料（預估 11 月上旬公布）", "event": "Nasdaq 空單半月報", "category": "Corporate", "expectedImpact": "Neutral", "importance": "Low", "description": "空單已約佔流通股 19%，若續增代表空方持續押注；若減少則反彈條件改善。" },
+      { "date": "2026-12-09", "dateConfirmed": true, "window": "FOMC 12/8–12/9", "event": "FOMC 利率決議", "category": "Macro", "expectedImpact": "Neutral", "importance": "Low", "description": "Beta 約 3.58，對風險偏好極度敏感。" },
+      { "date": "2026-12-15", "dateConfirmed": false, "window": "2026-12 至 2027 上半年（預估）", "event": "Tongmei 私募交割與香港上市申請進度", "category": "Corporate", "expectedImpact": "Neutral", "importance": "Medium", "description": "確認實際私募金額與 AXT 持股比例，決定 2027 年歸屬母公司獲利的稀釋幅度。" },
+      { "date": "2026-12-31", "dateConfirmed": false, "window": "2026 Q4 至 2027 Q1（預估）", "event": "中國商務部對美國客戶的 InP 出口許可核發", "category": "Regulatory", "expectedImpact": "Binary", "importance": "High", "description": "增資說明書稱對美國客戶的許可在最後審查階段；核發即為 bull 情境的關鍵，延宕則重演 2025 年 Q4 的營收落空。" },
+      { "date": "2027-01-28", "dateConfirmed": false, "window": "2027-01 下旬至 02 上旬（預估）", "event": "雲端巨頭 4Q26 財報與 2027 CapEx 指引", "category": "CustomerCapEx", "expectedImpact": "Binary", "importance": "High", "description": "光通訊類股本輪修正的主要原因；CapEx 維持高成長將帶動上游材料股反彈。" },
+      { "date": "2027-02-18", "dateConfirmed": false, "window": "Q4 2026 財報（預估，去年為 2/19）", "event": "AXT Q4 2026 財報與 Q1 2027 展望", "category": "Earnings", "expectedImpact": "Binary", "importance": "High", "description": "驗證約 $90M 營收與 EPS $0.57–0.59，並更新積壓訂單、產能與出口許可狀況。" },
+      { "date": "2027-03-16", "dateConfirmed": false, "window": "2027-03（預估）", "event": "OFC 2027 與 NVIDIA GTC 2027", "category": "Conference", "expectedImpact": "Neutral", "importance": "Medium", "description": "1.6T／3.2T 光學與 CPO 外部光源路線圖，影響市場對 InP 雷射需求的預期。" },
+      { "date": "2027-04-29", "dateConfirmed": false, "window": "Q1 2027 財報（預估，去年為 4/30）", "event": "AXT Q1 2027 財報", "category": "Earnings", "expectedImpact": "Neutral", "importance": "Medium", "description": "產能再翻倍的進度、4 吋與 6 吋轉換對毛利率的影響。" },
+      { "date": "2027-07-29", "dateConfirmed": false, "window": "Q2 2027 財報（預估 7 月底）", "event": "AXT Q2 2027 財報", "category": "Earnings", "expectedImpact": "Neutral", "importance": "Medium", "description": "確認 2027 年營收是否朝 $500M 以上推進。" }
+    ],
+    "sentimentScore": {
+      "score": 54,
+      "label": "中性（基本面強、地緣與籌碼風險高）",
+      "components": [
+        { "factor": "基本面動能", "score": 85, "weightPct": 30, "comment": "營收 YoY +162%、毛利率 56%、積壓訂單逾 $500M" },
+        { "factor": "估值吸引力", "score": 65, "weightPct": 20, "comment": "2027E 約 20x、淨現金約 $11.5／股" },
+        { "factor": "技術面", "score": 22, "weightPct": 15, "comment": "跌破所有均線與 10 月低點，距高點 −66%" },
+        { "factor": "籌碼與衍生品", "score": 30, "weightPct": 15, "comment": "空單 19%、內部人大量賣出、負 Gamma；但 Call 抄底資金活躍" },
+        { "factor": "消息與事件風險", "score": 40, "weightPct": 20, "comment": "出口許可、Tongmei 稀釋、類股資金撤離" }
+      ],
+      "bullCase": [
+        "InP 是 AI 光通訊雷射的關鍵瓶頸材料，積壓訂單逾 $500M，約為 2026 年營收的兩倍，需求成長快於產能。",
+        "營業槓桿驚人：毛利率 22% → 56%、營業利益率由虧損到 40%，Q4 EPS 指引 $0.57–0.59，年化已約 $2.32。",
+        "股價較 5 月高點回落 66%，對應 2027E 約 20x，另有約 $11.5／股淨現金（約佔股價 24%）。",
+        "空單約佔流通股 19%，若出口許可或訂單出現利多，回補可能非常劇烈。",
+        "Lumentum 長約與預付款、6 吋 InP 試產與 Tongmei 香港上市都是潛在重評價催化劑。"
+      ],
+      "bearCase": [
+        "生產全在中國，InP 出口需中國商務部許可，2025 年 Q4 已因許可不足而營收落空；美中關係惡化可能直接切斷美國客戶出貨。",
+        "Tongmei 私募後持股降至約 73.4%，加上 4 月約 18% 增資，每股獲利被雙重稀釋。",
+        "CEO 與董事在 $36–$115 區間大量賣出且未使用 10b5-1 計畫，內部人行為與「供不應求」的說法有落差。",
+        "全球 InP 擴產同步進行，AI 光通訊若放緩，2028 年後可能出現價格回落。",
+        "Beta 3.58、IV30 108%，股價一年內由 $7.8 漲到 $143 再跌到 $48，波動極端。"
+      ],
+      "verdict": "基本面處於拐點上升期，但股價同時承受類股修正、中國出口管制與內部人賣壓三重壓力。以 2027E EPS $2.40（已扣 Tongmei 稀釋）× 24x 給予 base $58、評等 Buy，並把 bear 機率提高到 30%。確認訊號：Q4 營收超過 $90M 且對美國客戶的出口許可核發、股價站回 $56–$65；否定訊號：跌破 $45 Put Wall 或出現許可延宕。"
+    }
+  },
+  "changelog": [
+    {
+      "date": "2026-11-03",
+      "priceAtUpdate": 48.2,
+      "ratingFrom": null,
+      "ratingTo": "Buy",
+      "baseTargetFrom": null,
+      "baseTargetTo": 58,
+      "bearTarget": 21,
+      "bullTarget": 105,
+      "previousThesis": null,
+      "summary": "首次建立覆蓋。Q3 2026 營收 +162%、毛利率 56% 大幅超預期，但股價受光通訊類股修正拖累，較 5 月高點回落 66%；以 2027E EPS $2.40 × 24x 給予 base $58，評等 Buy，bear 機率加重至 30%。",
+      "keyChanges": [
+        "建立三情境：Bear $21（15x × $1.40）／Base $58（24x × $2.40）／Bull $105（34x × $3.10），機率 30／45／25。",
+        "我方 2027E EPS $2.40 低於共識 $2.65，已扣除 Tongmei 私募後的少數股權稀釋。",
+        "價格區間：≤$38 便宜、$48–$67 合理、≥$82 昂貴；關鍵技術位 $45（Put Wall）與 $65（均線叢集）。"
+      ]
+    }
+  ]
+}

@@ -313,18 +313,29 @@ export function TargetScale({ price, scenarios, street, zones, compact = false }
   const x = (v) => padX + ((v - lo) / (hi - lo)) * iw;
   const H = compact ? 58 : 118;
   const axisY = compact ? 34 : 60;
-  const minGap = compact ? 44 : 64;
-
-  const ours = spread(scenarios.map((s) => ({ key: s.key, pos: x(s.targetPrice), s })), minGap, padX + 20, padX + iw - 20);
-  const streetPts = !compact && street
-    ? spread([
-        { key: 'low', pos: x(street.lowTarget), label: 'Low', v: street.lowTarget },
-        { key: 'median', pos: x(street.medianTarget), label: 'Median', v: street.medianTarget },
-        { key: 'high', pos: x(street.highTarget), label: 'High', v: street.highTarget },
-      ], minGap, padX + 20, padX + iw - 20)
-    : [];
-  const scenarioColor = { bear: 'var(--down)', base: 'var(--accent)', bull: 'var(--up)' };
+  const narrow = width < 560;
+  // 依實際標籤長度估算寬度（10.5px 等寬字約 6.4px／字），避免長價格（如 $1,193）互相重疊
+  const charW = compact ? 5.9 : 6.4;
+  const labelW = (text) => text.length * charW + 10;
   const scenarioLabel = { bear: 'Bear', base: 'Base', bull: 'Bull' };
+  const ourText = (s) => `${scenarioLabel[s.key]} ${fmtUsd(s.targetPrice, 0)}`;
+  const streetPrefix = narrow ? '' : 'Street ';
+  const streetName = { low: 'Low', median: narrow ? 'Med' : 'Median', high: 'High' };
+  const streetText = (p) => `${streetPrefix}${streetName[p.key]} ${fmtUsd(p.v, 0)}`;
+
+  const ourGap = Math.max(...scenarios.map((s) => labelW(ourText(s))));
+  const ourHalf = ourGap / 2;
+  const ours = spread(scenarios.map((s) => ({ key: s.key, pos: x(s.targetPrice), s })), ourGap, padX + ourHalf - 10, padX + iw - ourHalf + 10);
+  const streetRaw = !compact && street
+    ? [
+        { key: 'low', pos: x(street.lowTarget), v: street.lowTarget },
+        { key: 'median', pos: x(street.medianTarget), v: street.medianTarget },
+        { key: 'high', pos: x(street.highTarget), v: street.highTarget },
+      ]
+    : [];
+  const streetGap = streetRaw.length ? Math.max(...streetRaw.map((p) => labelW(streetText(p)))) : 0;
+  const streetPts = streetRaw.length ? spread(streetRaw, streetGap, padX + streetGap / 2 - 10, padX + iw - streetGap / 2 + 10) : [];
+  const scenarioColor = { bear: 'var(--down)', base: 'var(--accent)', bull: 'var(--up)' };
   const bandY = axisY - 5;
 
   return (
@@ -353,8 +364,9 @@ export function TargetScale({ price, scenarios, street, zones, compact = false }
           {streetPts.map((p) => (
             <g key={p.key}>
               <circle cx={x(p.v)} cy={axisY + 14} r="4" fill="var(--series-1)" stroke="var(--surface)" strokeWidth="2" />
+              <line x1={x(p.v)} x2={p.pos} y1={axisY + 18} y2={axisY + 22} stroke="var(--axis)" strokeWidth="1" />
               <text x={p.pos} y={axisY + 32} textAnchor="middle" fontSize="10.5" fill="var(--ink)" className="num">
-                <tspan fill="var(--ink-3)">Street {p.label} </tspan>
+                <tspan fill="var(--ink-3)">{streetPrefix}{streetName[p.key]} </tspan>
                 {fmtUsd(p.v, 0)}
               </text>
             </g>
